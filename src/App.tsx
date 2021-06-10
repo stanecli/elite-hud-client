@@ -1,58 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import AnalysisMode from "./AnalysisMode";
+import { WebSocketContext } from "./WebSocketContext";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    const [socket, setSocket] = useState<WebSocket>();
+    useEffect(() => {
+        // disable context menus
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+        // create a new websocket and connect
+        const ws = new WebSocket("ws://192.168.0.20:8181/");
+
+        // when the connection is established, this method is called
+        ws.onopen = function () {
+            setSocket(socket);
+        };
+
+        // when the connection is closed, this method is called
+        ws.onclose = function () {};
+
+        return () => {
+            ws.close();
+        };
+    }, [socket]);
+    return (
+        <WebSocketContext.Provider value={socket}>
+            <div className="App">
+                <AnalysisMode />
+            </div>
+        </WebSocketContext.Provider>
+    );
 }
 
 export default App;

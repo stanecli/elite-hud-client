@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 202 112">
+    <defs>
+        <radialGradient id="b7399c39-993f-4db7-8b77-5d487d76a9e2" cx="110.28" cy="269.5" r="300.32"
+            gradientTransform="translate(201 328.59) rotate(180) scale(1 1.01)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#a6fffe" stop-opacity="0" />
+            <stop offset="1" stop-color="#a6fffe" stop-opacity="0.7" />
+        </radialGradient>
+    </defs>
+    <g id="eac02f02-5f4e-410e-9d53-58c6d66d9555" data-name="Layer 2">
+        <g id="a17acd7b-678d-4e39-90e3-113c9943a162" data-name="buttons active">
+            <g id="ad43b70b-0b08-47d7-b8a5-80045874cf9c" data-name="small button">
+                <path id="a5530dc7-7b13-485b-8a02-30420eb701de" data-name="button frame"
+                    d="M10.5.5h180l10,10v90l-10,10H10.5l-10-10v-90Z"
+                    style="stroke:#a6fffe;stroke-miterlimit:10;fill:url(#b7399c39-993f-4db7-8b77-5d487d76a9e2)" />
+                <path id="a4f9baf7-14be-4c37-980c-f5cafd6723e8" data-name="button side"
+                    d="M180.5.5h10l10,10v90l-10,10h-10Z" style="fill:#a6fffe;stroke:#a6fffe;stroke-miterlimit:10" />
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,27 @@
+.ship-controls {
+    display: flex;
+    justify-content: space-between;
+    max-width: 720px;
+    padding-top: 50px;
+    margin: 0 auto;
+}
+
+.ship-controls .left-side .button,
+.ship-controls .right-side .button {
+    margin-top: 14px;
+    margin-bottom: 20px;
+}
+
+.ship-controls .center {
+    position: relative;
+}
+
+.ship-image.Federation_Corvette {
+    width: 192px;
+    height: 368px;
+    background: url("./static/img/federal-corvette.png");
+    position: absolute;
+    bottom: -64px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

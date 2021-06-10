@@ -1,0 +1,107 @@
+.button {
+    user-select: none;
+}
+
+.button.small {
+    width: 202px;
+    height: 112px;
+    position: relative;
+}
+
+.btn-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px 30px;
+    box-sizing: border-box;
+}
+
+.btn-icon {
+    width: 64px;
+    height: 32px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+.button.small.left > svg {
+    transform: rotate(180deg);
+}
+
+.btn-separator {
+    background: var(--normal);
+    height: 1px;
+    width: 90px;
+    margin: 5px 0;
+}
+
+.btn-icon > svg {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.button.small.right .btn-label > * {
+    float: right;
+    text-align: right;
+    clear: both;
+}
+
+.btn-bg > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.active .btn-bg .normal,
+.btn-bg .active {
+    opacity: 0;
+}
+
+.active .btn-bg .active {
+    opacity: 1;
+}
+
+.active .btn-icon .normal,
+.btn-icon .active {
+    display: none;
+}
+
+.active .btn-icon .active {
+    display: block;
+}
+
+.button.active {
+    color: var(--active);
+}
+
+.button.active .btn-separator {
+    background: var(--active);
+}
+
+.btn-bg {
+    height: 100%;
+}
+
+.left .btn-bg {
+    transform: rotate(180deg);
+}
+
+.button.alarm {
+    color: var(--alarm);
+}
+
+.alarm .btn-separator {
+    background: var(--alarm);
+}
+
+.active.button.alarm {
+    color: var(--alarm-active);
+}
+
+.active.alarm .btn-separator {
+    background: var(--alarm-active);
+}
