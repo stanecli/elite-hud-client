@@ -1,11 +1,14 @@
-import { Action, applyMiddleware, createStore, ThunkAction } from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
+import thunk from "redux-thunk";
 import { rootReducer } from "./rootReducer";
 import { rootSaga } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
-
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+export const store = configureStore({
+    reducer: rootReducer,
+    middleware: [thunk, sagaMiddleware],
+});
 
 sagaMiddleware.run(rootSaga);
 

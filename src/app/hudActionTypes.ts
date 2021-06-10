@@ -11,19 +11,30 @@ export interface LoadGameAction {
     data: LoadGameData;
 }
 
-export interface LandingGearAction {
+export interface LandingGearChangedAction {
     type: typeof EVT_LANDING_GEAR;
     data: boolean;
 }
 
-export interface NightVisionAction {
+export interface NightVisionChangedAction {
     type: typeof EVT_NIGHTVISION;
     data: boolean;
+}
+
+export enum KeyPressMode {
+    Simultaneous,
+    Sequential,
 }
 
 export interface PressKeysAction {
     type: typeof ACT_PRESS_KEYS;
     keys: string[];
+    mode: KeyPressMode;
 }
 
-export type HudActionTypes = MessageAction | LoadGameAction | LandingGearAction | PressKeysAction | NightVisionAction;
+export type HudActionTypes =
+    | MessageAction
+    | LoadGameAction
+    | PressKeysAction
+    | LandingGearChangedAction
+    | NightVisionChangedAction;

@@ -1,28 +1,27 @@
 import React, { FC } from "react";
 import { ReactComponent as SmallButtonBothSidedActive } from "./static/SVG/btn_sm_both_active.svg";
-import { ReactComponent as SmallButtonBothSidedNormal } from "./static/SVG/btn_sm_both_normal.svg";
-import { ReactComponent as SmallButtonRightSidedActive } from "./static/SVG/btn_sm_right_active.svg";
-import { ReactComponent as SmallButtonRightSidedAlarmActive } from "./static/SVG/btn_sm_right_alarm_active.svg";
-import { ReactComponent as SmallButtonRightSidedAlarmNormal } from "./static/SVG/btn_sm_right_alarm_normal.svg";
-import { ReactComponent as SmallButtonRightSidedNormal } from "./static/SVG/btn_sm_right_normal.svg";
+import { ReactComponent as SmallButtonBothSidedNormal } from "./static/SVG/btn_sm_both.svg";
+import { ReactComponent as SmallButtonRightSidedActive } from "./static/SVG/btn_sm_side_active.svg";
+import { ReactComponent as SmallButtonRightSidedNormal } from "./static/SVG/btn_sm_side.svg";
 
-export enum Side {
+export enum ButtonSide {
     Left,
     Right,
     Both,
 }
 
 interface Props {
-    side: Side;
+    side: ButtonSide;
     alarm?: boolean;
     title: string;
-    status: string;
+    onText?: string;
+    offText?: string;
     active: boolean;
     onClick?: () => void;
 }
 
-const ButtonSmall: FC<Props> = ({ side, children, title, status, alarm, active, onClick }) => {
-    const sideClass: string = side === Side.Left ? "left" : side === Side.Right ? "right" : "both";
+const ButtonSmall: FC<Props> = ({ side, children, title, onText = "on", offText = "off", alarm, active, onClick }) => {
+    const sideClass: string = side === ButtonSide.Left ? "left" : side === ButtonSide.Right ? "right" : "both";
     return (
         <div
             className={`button small ${sideClass} normal ${active ? "active" : ""} ${alarm ? "alarm" : ""}`}
@@ -30,19 +29,17 @@ const ButtonSmall: FC<Props> = ({ side, children, title, status, alarm, active, 
         >
             <div className="btn-bg">
                 <div className="normal">
-                    {!alarm && (side === Side.Both ? <SmallButtonBothSidedNormal /> : <SmallButtonRightSidedNormal />)}
-                    {alarm && <SmallButtonRightSidedAlarmNormal />}
+                    {side === ButtonSide.Both ? <SmallButtonBothSidedNormal /> : <SmallButtonRightSidedNormal />}
                 </div>
                 <div className="active">
-                    {!alarm && (side === Side.Both ? <SmallButtonBothSidedActive /> : <SmallButtonRightSidedActive />)}
-                    {alarm && <SmallButtonRightSidedAlarmActive />}
+                    {side === ButtonSide.Both ? <SmallButtonBothSidedActive /> : <SmallButtonRightSidedActive />}
                 </div>
             </div>
             <div className="btn-label">
                 <div className="btn-icon">{children}</div>
                 <div className="btn-title">{title}</div>
                 <div className="btn-separator"></div>
-                <div className="btn-status">{status}</div>
+                <div className="btn-status">{active ? onText : offText}</div>
             </div>
         </div>
     );

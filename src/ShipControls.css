@@ -1,0 +1,63 @@
+.ship-controls .left-side .button,
+.ship-controls .right-side .button {
+    margin-top: 14px;
+    margin-bottom: 20px;
+}
+
+.ship-controls .center {
+    position: relative;
+}
+
+.ship-controls .top-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ship-controls .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    position: relative;
+}
+
+.ship-image.Federation_Corvette {
+    width: 192px;
+    height: 368px;
+    background: url("./static/img/federal-corvette.png");
+}
+
+.ship-image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.ship-controls .info {
+    font-weight: 300;
+}
+
+.info .percent {
+    font-size: 46px;
+    border-bottom: 1px solid;
+}
+
+.info .label {
+    font-size: 22px;
+    padding-top: 10px;
+}
+
+.hull.info {
+    color: var(--alarm);
+    text-align: right;
+    float: right;
+}
+
+.info {
+    padding: 5px 20px;
+}
+
+.shields.info {
+    color: var(--shields);
+    float: left;
+}

@@ -1,6 +1,6 @@
 import { take } from "redux-saga/effects";
 import { ACT_PRESS_KEYS } from "./hudActions";
-import { PressKeysAction } from "./hudActionTypes";
+import { KeyPressMode, PressKeysAction } from "./hudActionTypes";
 
 export function* sendSaga(socket: WebSocket) {
     while (true) {
@@ -9,6 +9,7 @@ export function* sendSaga(socket: WebSocket) {
             JSON.stringify({
                 type: "PRESS_KEYS",
                 keys: action.keys,
+                mode: KeyPressMode[action.mode],
             })
         );
     }

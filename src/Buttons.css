@@ -65,23 +65,6 @@
     opacity: 1;
 }
 
-.active .btn-icon .normal,
-.btn-icon .active {
-    display: none;
-}
-
-.active .btn-icon .active {
-    display: block;
-}
-
-.button.active {
-    color: var(--active);
-}
-
-.button.active .btn-separator {
-    background: var(--active);
-}
-
 .btn-bg {
     height: 100%;
 }
@@ -90,18 +73,6 @@
     transform: rotate(180deg);
 }
 
-.button.alarm {
-    color: var(--alarm);
-}
-
-.alarm .btn-separator {
-    background: var(--alarm);
-}
-
-.active.button.alarm {
-    color: var(--alarm-active);
-}
-
-.active.alarm .btn-separator {
-    background: var(--alarm-active);
+.button.active {
+    filter: hue-rotate(173deg) saturate(0.5) brightness(1.6) drop-shadow(0 0 6px #a6fffe54);
 }

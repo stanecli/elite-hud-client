@@ -1,0 +1,57 @@
+.discovery-controls {
+    padding-top: 50px;
+}
+
+.button.horizontal {
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 40px;
+}
+
+.button.horizontal.side {
+    width: 244px;
+}
+
+.button.horizontal.left {
+    padding-left: 60px;
+}
+
+.button.horizontal.right {
+    padding-right: 60px;
+}
+
+.button.horizontal.middle {
+    width: 236px;
+}
+
+.button.horizontal.right .bg > svg {
+    transform: rotate(180deg);
+}
+
+.button.horizontal .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+}
+
+.button.horizontal .icon {
+    padding-top: 25px;
+    padding-bottom: 20px;
+    height: 110px;
+    border-bottom: 1px solid var(--normal);
+    box-sizing: border-box;
+}
+
+.button.horizontal .icon svg {
+    margin: auto;
+    display: block;
+}
+
+.button .label {
+    text-align: center;
+    font-size: 18px;
+    line-height: 46px;
+}
