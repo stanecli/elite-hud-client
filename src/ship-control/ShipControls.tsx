@@ -19,8 +19,11 @@ import {
     toggleCargoScoop,
     toggleHardpoints,
     toggleHeadlights,
+    toggleHud,
     toggleLandingGear,
     toggleNightVision,
+    toggleOrbitLines,
+    toggleRotationCorrection,
     toggleSilentRunning,
 } from "./shipControlActions";
 import { RootState } from "../app/store";
@@ -109,13 +112,25 @@ const ShipControls: FC<Props> = ({ ship, shipType }) => {
                 </div>
             </div>
             <div className="bottom-row">
-                <ButtonSmall side={ButtonSide.Left} title="rotational corr." active={ship.rotationalCorrection}>
+                <ButtonSmall
+                    side={ButtonSide.Left}
+                    title="rotational corr."
+                    active={ship.rotationalCorrection}
+                    onClick={toggleRotationCorrection}
+                    reverse
+                >
                     <RotationCorrection width="41" />
                 </ButtonSmall>
-                <ButtonSmall side={ButtonSide.Left} title="orbit lines" active={ship.orbitLines}>
+                <ButtonSmall
+                    side={ButtonSide.Left}
+                    title="orbit lines"
+                    active={ship.orbitLines}
+                    onClick={toggleOrbitLines}
+                    reverse
+                >
                     <OrbitLines width="64" />
                 </ButtonSmall>
-                <ButtonSmall side={ButtonSide.Left} title="hud" active={ship.hud}>
+                <ButtonSmall side={ButtonSide.Left} title="hud" active={ship.hud} onClick={toggleHud} reverse>
                     <Hud width="56" />
                 </ButtonSmall>
             </div>

@@ -2,9 +2,12 @@ import {
     EVT_CARGO_SCOOP,
     EVT_HARDPOINTS,
     EVT_HEADLIGHTS,
+    EVT_HUD,
     EVT_LANDING_GEAR,
     EVT_LOAD_GAME,
     EVT_NIGHTVISION,
+    EVT_ORBIT_LINES,
+    EVT_ROTATIONAL_CORRECTION,
     EVT_SILENT_RUNNING,
 } from "./hudActions";
 import { HudActionTypes } from "./hudActionTypes";
@@ -85,6 +88,30 @@ export function hudReducer(state = initialState, action: HudActionTypes): HudSta
                 ship: {
                     ...state.ship,
                     headlights: action.data,
+                },
+            };
+        case EVT_HUD:
+            return {
+                ...state,
+                ship: {
+                    ...state.ship,
+                    hud: action.data,
+                },
+            };
+        case EVT_ORBIT_LINES:
+            return {
+                ...state,
+                ship: {
+                    ...state.ship,
+                    orbitLines: action.data,
+                },
+            };
+        case EVT_ROTATIONAL_CORRECTION:
+            return {
+                ...state,
+                ship: {
+                    ...state.ship,
+                    rotationalCorrection: action.data,
                 },
             };
         default:

@@ -3,9 +3,12 @@ import {
     EVT_CARGO_SCOOP,
     EVT_HARDPOINTS,
     EVT_HEADLIGHTS,
+    EVT_HUD,
     EVT_LANDING_GEAR,
     EVT_LOAD_GAME,
     EVT_NIGHTVISION,
+    EVT_ORBIT_LINES,
+    EVT_ROTATIONAL_CORRECTION,
     EVT_SILENT_RUNNING,
 } from "./hudActions";
 import { LoadGameData } from "./hudStateTypes";
@@ -45,6 +48,21 @@ export interface SilentRunningChangedAction {
     data: boolean;
 }
 
+export interface OrbitLinesChangedAction {
+    type: typeof EVT_ORBIT_LINES;
+    data: boolean;
+}
+
+export interface HUDChangedAction {
+    type: typeof EVT_HUD;
+    data: boolean;
+}
+
+export interface RotationalCorrectionChangedAction {
+    type: typeof EVT_ROTATIONAL_CORRECTION;
+    data: boolean;
+}
+
 export enum KeyPressMode {
     Simultaneous,
     Sequential,
@@ -64,4 +82,7 @@ export type HudActionTypes =
     | HeadlightsChangedAction
     | CargoScoopChangedAction
     | SilentRunningChangedAction
+    | OrbitLinesChangedAction
+    | RotationalCorrectionChangedAction
+    | HUDChangedAction
     | HardpointsChangedAction;

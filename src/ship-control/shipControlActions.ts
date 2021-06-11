@@ -3,18 +3,24 @@ import {
     EVT_CARGO_SCOOP,
     EVT_HARDPOINTS,
     EVT_HEADLIGHTS,
+    EVT_HUD,
     EVT_LANDING_GEAR,
     EVT_NIGHTVISION,
+    EVT_ORBIT_LINES,
+    EVT_ROTATIONAL_CORRECTION,
     EVT_SILENT_RUNNING,
 } from "../app/hudActions";
 import {
     CargoScoopChangedAction,
     HardpointsChangedAction,
     HeadlightsChangedAction,
+    HUDChangedAction,
     KeyPressMode,
     LandingGearChangedAction,
     NightVisionChangedAction,
+    OrbitLinesChangedAction,
     PressKeysAction,
+    RotationalCorrectionChangedAction,
     SilentRunningChangedAction,
 } from "../app/hudActionTypes";
 import { store } from "../app/store";
@@ -88,5 +94,41 @@ export const toggleSilentRunning = () => {
     store.dispatch<SilentRunningChangedAction>({
         type: EVT_SILENT_RUNNING,
         data: !store.getState().hud.ship.silentRunning,
+    });
+};
+
+export const toggleRotationCorrection = () => {
+    store.dispatch<PressKeysAction>({
+        type: ACT_PRESS_KEYS,
+        keys: ["OemCloseBrackets"],
+        mode: KeyPressMode.Sequential,
+    });
+    store.dispatch<RotationalCorrectionChangedAction>({
+        type: EVT_ROTATIONAL_CORRECTION,
+        data: !store.getState().hud.ship.rotationalCorrection,
+    });
+};
+
+export const toggleOrbitLines = () => {
+    store.dispatch<PressKeysAction>({
+        type: ACT_PRESS_KEYS,
+        keys: ["Oemplus"],
+        mode: KeyPressMode.Sequential,
+    });
+    store.dispatch<OrbitLinesChangedAction>({
+        type: EVT_ORBIT_LINES,
+        data: !store.getState().hud.ship.orbitLines,
+    });
+};
+
+export const toggleHud = () => {
+    store.dispatch<PressKeysAction>({
+        type: ACT_PRESS_KEYS,
+        keys: ["LControlKey", "LMenu", "G"],
+        mode: KeyPressMode.Simultaneous,
+    });
+    store.dispatch<HUDChangedAction>({
+        type: EVT_HUD,
+        data: !store.getState().hud.ship.hud,
     });
 };
