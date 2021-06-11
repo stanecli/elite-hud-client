@@ -74,5 +74,13 @@
 }
 
 .button.active {
-    filter: hue-rotate(173deg) saturate(0.5) brightness(1.6) drop-shadow(0 0 6px #a6fffe54);
+    filter: hue-rotate(173deg) saturate(0.5) brightness(1.6) drop-shadow(0 0 6px var(--active-glow));
+}
+
+.button.alarm {
+    filter: hue-rotate(340deg) saturate(1.6) brightness(1);
+}
+
+.button.alarm.active {
+    filter: hue-rotate(21deg) saturate(1) brightness(1.5) drop-shadow(0 0 6px var(--alarm-active-glow));
 }

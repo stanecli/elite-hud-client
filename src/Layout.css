@@ -1,5 +1,15 @@
+svg {
+    display: block;
+}
+
 .middle-column {
     max-width: 724px;
-    padding-top: 50px;
-    margin: 0 auto;
+}
+
+.layout {
+    padding-top: 130px;
+    display: flex;
+    justify-content: space-around;
+    max-width: 1920px;
+    margin: auto;
 }

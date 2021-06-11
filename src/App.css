@@ -2,11 +2,15 @@
 
 :root {
     --normal: #f76e01;
+    --normal-glow: #f76e0154;
     --active: #a6fffe;
     --active-glow: #a6fffe54;
     --alarm: #f74601;
+    --alarm-glow: #f7460154;
     --alarm-active: #f7b101;
+    --alarm-active-glow: #f7b10154;
     --shields: #82d3ff;
+    --shields-glow: #82d3ff54;
 }
 
 html,

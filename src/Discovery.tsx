@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "./app/rootReducer";
 import "./Buttons.css";
 import "./Discovery.css";
 
@@ -10,6 +9,7 @@ import { ReactComponent as Middle } from "./static/SVG/btn_big_horizontal_middle
 import { ReactComponent as GalaxyMap } from "./static/SVG/galaxy_map.svg";
 import { ReactComponent as SystemMap } from "./static/SVG/system_map.svg";
 import { ReactComponent as Fss } from "./static/SVG/fss.svg";
+import { RootState } from "./app/store";
 
 const connector = connect((state: RootState) => ({}));
 

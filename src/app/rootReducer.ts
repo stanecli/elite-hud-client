@@ -6,5 +6,3 @@ export const rootReducer = combineReducers({
     session: sessionReducer,
     hud: hudReducer,
 });
-
-export type RootState = ReturnType<typeof rootReducer>;

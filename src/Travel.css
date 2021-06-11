@@ -1,0 +1,53 @@
+.travel-controls .bg svg {
+    width: 304px;
+}
+
+.travel-controls .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.button.vertical {
+    position: relative;
+    height: 167px;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+
+.button.vertical.arrow {
+    height: 188px;
+    width: 304px;
+    box-sizing: border-box;
+    padding: 20px 50px;
+}
+
+.button.vertical .label {
+    line-height: 1.4;
+}
+
+.button.vertical .icon {
+    width: 140px;
+    margin: auto;
+    padding-bottom: 15px;
+    border-bottom: 1px solid;
+    margin-bottom: 15px;
+}
+
+.button.vertical .icon svg {
+    margin: auto;
+    display: block;
+}
+
+.button.vertical.flip .bg {
+    transform: rotate(180deg);
+}
+
+.button.vertical.arrow.flip {
+    padding-top: 50px;
+}
+
+.button.vertical.arrow.up .icon {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}

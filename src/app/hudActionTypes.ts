@@ -1,10 +1,14 @@
-import { ACT_PRESS_KEYS, EVT_LANDING_GEAR, EVT_LOAD_GAME, EVT_MESSAGE, EVT_NIGHTVISION } from "./hudActions";
-import { LoadGameData } from "./hudDataTypes";
-
-export interface MessageAction {
-    type: typeof EVT_MESSAGE;
-    message: string;
-}
+import {
+    ACT_PRESS_KEYS,
+    EVT_CARGO_SCOOP,
+    EVT_HARDPOINTS,
+    EVT_HEADLIGHTS,
+    EVT_LANDING_GEAR,
+    EVT_LOAD_GAME,
+    EVT_NIGHTVISION,
+    EVT_SILENT_RUNNING,
+} from "./hudActions";
+import { LoadGameData } from "./hudStateTypes";
 
 export interface LoadGameAction {
     type: typeof EVT_LOAD_GAME;
@@ -21,6 +25,26 @@ export interface NightVisionChangedAction {
     data: boolean;
 }
 
+export interface HardpointsChangedAction {
+    type: typeof EVT_HARDPOINTS;
+    data: boolean;
+}
+
+export interface HeadlightsChangedAction {
+    type: typeof EVT_HEADLIGHTS;
+    data: boolean;
+}
+
+export interface CargoScoopChangedAction {
+    type: typeof EVT_CARGO_SCOOP;
+    data: boolean;
+}
+
+export interface SilentRunningChangedAction {
+    type: typeof EVT_SILENT_RUNNING;
+    data: boolean;
+}
+
 export enum KeyPressMode {
     Simultaneous,
     Sequential,
@@ -33,8 +57,11 @@ export interface PressKeysAction {
 }
 
 export type HudActionTypes =
-    | MessageAction
     | LoadGameAction
     | PressKeysAction
     | LandingGearChangedAction
-    | NightVisionChangedAction;
+    | NightVisionChangedAction
+    | HeadlightsChangedAction
+    | CargoScoopChangedAction
+    | SilentRunningChangedAction
+    | HardpointsChangedAction;

@@ -1,10 +1,12 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "./app/rootReducer";
 import "./Buttons.css";
 import Discovery from "./Discovery";
-import ShipControls from "./ShipControls";
 import "./Layout.css";
+import Travel from "./Travel";
+import InfoPanel from "./info-panel/InfoPanel";
+import ShipControls from "./ship-control/ShipControls";
+import { RootState } from "./app/store";
 
 const connector = connect((state: RootState) => ({
     connected: state.session.connected,
@@ -18,9 +20,17 @@ const AnalysisMode: FC<Props> = ({ connected }) => {
         <div>
             {!connected && <div className="">Connecting..</div>}
             {connected && (
-                <div className="middle-column">
-                    <ShipControls />
-                    <Discovery />
+                <div className="layout">
+                    <div className="left-side">
+                        <InfoPanel />
+                    </div>
+                    <div className="middle-column">
+                        <ShipControls />
+                        <Discovery />
+                    </div>
+                    <div className="right-side">
+                        <Travel />
+                    </div>
                 </div>
             )}
         </div>
