@@ -1,5 +1,6 @@
 import {
     EVT_CARGO_SCOOP,
+    EVT_GUI_FOCUS,
     EVT_HARDPOINTS,
     EVT_HEADLIGHTS,
     EVT_HUD,
@@ -11,7 +12,7 @@ import {
     EVT_SILENT_RUNNING,
 } from "./hudActions";
 import { HudActionTypes } from "./hudActionTypes";
-import { HudState } from "./hudStateTypes";
+import { HudState, ShipGuiFocus } from "./hudStateTypes";
 
 const initialState: HudState = {
     ship: {
@@ -24,6 +25,7 @@ const initialState: HudState = {
         orbitLines: false,
         rotationalCorrection: false,
         silentRunning: false,
+        guiFocus: ShipGuiFocus.NoFocus,
     },
 };
 
@@ -112,6 +114,14 @@ export function hudReducer(state = initialState, action: HudActionTypes): HudSta
                 ship: {
                     ...state.ship,
                     rotationalCorrection: action.data,
+                },
+            };
+        case EVT_GUI_FOCUS:
+            return {
+                ...state,
+                ship: {
+                    ...state.ship,
+                    guiFocus: action.data,
                 },
             };
         default:

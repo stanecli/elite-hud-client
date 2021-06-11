@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import "./Buttons.css";
-import Discovery from "./Discovery";
 import "./Layout.css";
-import Travel from "./Travel";
 import InfoPanel from "./info-panel/InfoPanel";
 import ShipControls from "./ship-control/ShipControls";
 import { RootState } from "./app/store";
+import Discovery from "./discovery/Discovery";
+import Travel from "./travel/Travel";
 
 const connector = connect((state: RootState) => ({
     connected: state.session.connected,

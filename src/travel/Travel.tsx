@@ -1,20 +1,19 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import "./Buttons.css";
 import "./Travel.css";
 
-import { ReactComponent as Side } from "./static/SVG/btn_big_vertical_side.svg";
-import { ReactComponent as SideActive } from "./static/SVG/btn_big_vertical_side_active.svg";
-import { ReactComponent as Middle } from "./static/SVG/btn_big_vertical_middle.svg";
-import { ReactComponent as MiddleActive } from "./static/SVG/btn_big_vertical_middle.svg";
-import { ReactComponent as Arrow } from "./static/SVG/btn_big_vertical_arrow.svg";
-import { ReactComponent as ArrowActive } from "./static/SVG/btn_big_vertical_arrow_active.svg";
-import { ReactComponent as NextSystem } from "./static/SVG/next_system.svg";
-import { ReactComponent as HyperJump } from "./static/SVG/hyperjump.svg";
-import { ReactComponent as SuperCruise } from "./static/SVG/supercruise.svg";
-import { ReactComponent as Thrusters } from "./static/SVG/thrusters.svg";
-import { ReactComponent as EmergencyDrop } from "./static/SVG/emergency_drop.svg";
-import { RootState } from "./app/store";
+import { ReactComponent as Side } from "../static/SVG/btn_big_vertical_side.svg";
+import { ReactComponent as SideActive } from "../static/SVG/btn_big_vertical_side_active.svg";
+import { ReactComponent as Middle } from "../static/SVG/btn_big_vertical_middle.svg";
+import { ReactComponent as MiddleActive } from "../static/SVG/btn_big_vertical_middle.svg";
+import { ReactComponent as Arrow } from "../static/SVG/btn_big_vertical_arrow.svg";
+import { ReactComponent as ArrowActive } from "../static/SVG/btn_big_vertical_arrow_active.svg";
+import { ReactComponent as NextSystem } from "../static/SVG/next_system.svg";
+import { ReactComponent as HyperJump } from "../static/SVG/hyperjump.svg";
+import { ReactComponent as SuperCruise } from "../static/SVG/supercruise.svg";
+import { ReactComponent as Thrusters } from "../static/SVG/thrusters.svg";
+import { ReactComponent as EmergencyDrop } from "../static/SVG/emergency_drop.svg";
+import { RootState } from "../app/store";
 
 const connector = connect((state: RootState) => ({}));
 

@@ -1,6 +1,7 @@
 import {
     ACT_PRESS_KEYS,
     EVT_CARGO_SCOOP,
+    EVT_GUI_FOCUS,
     EVT_HARDPOINTS,
     EVT_HEADLIGHTS,
     EVT_HUD,
@@ -11,7 +12,7 @@ import {
     EVT_ROTATIONAL_CORRECTION,
     EVT_SILENT_RUNNING,
 } from "./hudActions";
-import { LoadGameData } from "./hudStateTypes";
+import { LoadGameData, ShipGuiFocus } from "./hudStateTypes";
 
 export interface LoadGameAction {
     type: typeof EVT_LOAD_GAME;
@@ -74,6 +75,11 @@ export interface PressKeysAction {
     mode: KeyPressMode;
 }
 
+export interface GuiFocusChangedAction {
+    type: typeof EVT_GUI_FOCUS;
+    data: ShipGuiFocus;
+}
+
 export type HudActionTypes =
     | LoadGameAction
     | PressKeysAction
@@ -85,4 +91,5 @@ export type HudActionTypes =
     | OrbitLinesChangedAction
     | RotationalCorrectionChangedAction
     | HUDChangedAction
+    | GuiFocusChangedAction
     | HardpointsChangedAction;
