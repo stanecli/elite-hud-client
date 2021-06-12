@@ -23,8 +23,9 @@ export function* receiveSaga(socket: WebSocket) {
 function HudChannel(socket: WebSocket) {
     return eventChannel((emit) => {
         socket.onmessage = (evt) => {
-            console.log(evt.data);
-            emit(JSON.parse(evt.data));
+            const data = JSON.parse(evt.data);
+            console.log(data);
+            emit(data);
         };
         return () => {
             // cleanup

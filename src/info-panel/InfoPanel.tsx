@@ -9,11 +9,12 @@ import { RootState } from "../app/store";
 const connector = connect((state: RootState) => ({
     status: state.hud.status,
     loadout: state.hud.loadout,
+    cargo: state.hud.cargo,
 }));
 
 type Props = ConnectedProps<typeof connector>;
 
-const InfoPanel: FC<Props> = ({ status, loadout }) => {
+const InfoPanel: FC<Props> = ({ status, loadout, cargo }) => {
     return (
         <div className="info-panel">
             <div className="commander-info">
@@ -22,7 +23,7 @@ const InfoPanel: FC<Props> = ({ status, loadout }) => {
             </div>
             <div className="ship-info">
                 <div className="label font-small active-color">ship</div>
-                <div className="ship-type font-medium">{status?.shipType}</div>
+                <div className="ship-type font-medium">{status?.shipTypeLocalised}</div>
                 <div className="label font-small active-color">ship name</div>
                 <div className="ship-name font-medium">{status?.shipName}</div>
                 <div className="label font-small active-color">insurance</div>
@@ -51,14 +52,16 @@ const InfoPanel: FC<Props> = ({ status, loadout }) => {
                         <div className="filled" style={{ width: "50%" }}></div>
                     </div>
                     <div className="value">
-                        <span className="current">12</span>
+                        <span className="current">{cargo?.count.value}</span>
                         <span className="separator">/</span>
-                        <span className="max">{loadout?.cargoCapacity}</span>T
+                        <span className="max">{cargo?.inventory.value.length}</span>T
                     </div>
                 </div>
-                <div className="cargo-item font-small">alexandrite (45)</div>
-                <div className="cargo-item font-small">musgravite (10)</div>
-                <div className="cargo-item font-small">benitoite (20)</div>
+                {cargo?.inventory.value.map((item, i) => (
+                    <div className="cargo-item font-small" key={i}>
+                        {item.name_Localised || item.name} ({item.count})
+                    </div>
+                ))}
             </div>
             <div className="camera-button">
                 <CircleButton className="bg" width={130} />

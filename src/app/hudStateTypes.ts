@@ -1,8 +1,9 @@
 export interface HudState {
     status?: StatusState;
+    loadout?: LoadoutSate;
+    cargo?: CargoState;
     ship: ShipControlState;
     fsd: FSDState;
-    loadout?: LoadoutSate;
 }
 
 export interface LoadoutSate {
@@ -23,6 +24,22 @@ export interface FSDState {
     massLocked: boolean;
 }
 
+export interface CargoState {
+    count: {
+        value: number;
+    };
+    inventory: {
+        value: CargoItem[];
+    };
+}
+
+export interface CargoItem {
+    count: number;
+    name: string;
+    name_Localised: string;
+    stolen: number;
+}
+
 export enum FSDStatus {
     Thrusters,
     SuperCruise,
@@ -32,6 +49,7 @@ export enum FSDStatus {
 export interface StatusState {
     commander: string;
     shipType: string;
+    shipTypeLocalised: string;
     shipName: string;
     fuelLevel: number;
     fuelCapacity: number;
@@ -45,7 +63,7 @@ export interface LoadGameData {
     hasHorizons: boolean;
     hasOdyssey: boolean;
     ship: string;
-    shipLocalised: string;
+    ship_Localised: string;
     shipId: string;
     shipName: string;
     shipIdent: string;

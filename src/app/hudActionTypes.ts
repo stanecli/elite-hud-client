@@ -1,5 +1,6 @@
 import {
     ACT_PRESS_KEYS,
+    EVT_CARGO,
     EVT_CARGO_SCOOP,
     EVT_DROPPING_OUT,
     EVT_FSD_CHARGING,
@@ -21,7 +22,7 @@ import {
     EVT_SUPERCRUISE,
     EVT_SUPERCRUISE_CHARGING,
 } from "./hudActions";
-import { LoadGameData, LoadoutSate, ShipGuiFocus } from "./hudStateTypes";
+import { CargoState, LoadGameData, LoadoutSate, ShipGuiFocus } from "./hudStateTypes";
 
 export interface LoadGameAction {
     type: typeof EVT_LOAD_GAME;
@@ -131,6 +132,11 @@ export interface SuperCruiseChargingChangedAction {
     data: boolean;
 }
 
+export interface CargoChangedAction {
+    type: typeof EVT_CARGO;
+    data: CargoState;
+}
+
 export type HudActionTypes =
     | LoadGameAction
     | PressKeysAction
@@ -152,4 +158,5 @@ export type HudActionTypes =
     | DroppingChangedAction
     | SuperCruiseChargingChangedAction
     | HyperJumpCharingChangedAction
-    | MassLockChangedAction;
+    | MassLockChangedAction
+    | CargoChangedAction;

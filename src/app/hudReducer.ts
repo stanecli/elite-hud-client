@@ -1,4 +1,5 @@
 import {
+    EVT_CARGO,
     EVT_CARGO_SCOOP,
     EVT_DROPPING_OUT,
     EVT_FSD_CHARGING,
@@ -61,6 +62,7 @@ export function hudReducer(state = initialState, action: HudActionTypes): HudSta
                     insurance: action.data.loan,
                     shipName: action.data.shipName,
                     shipType: action.data.ship,
+                    shipTypeLocalised: action.data.ship_Localised,
                 },
             };
         case EVT_LANDING_GEAR:
@@ -240,6 +242,11 @@ export function hudReducer(state = initialState, action: HudActionTypes): HudSta
                     isSuperCruiseCharging: false,
                     isCharging: false,
                 },
+            };
+        case EVT_CARGO:
+            return {
+                ...state,
+                cargo: action.data,
             };
         default:
             return state;

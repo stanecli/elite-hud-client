@@ -1,6 +1,7 @@
 // app events
 export const EVT_LOAD_GAME = "EVT_LOAD_GAME";
 export const EVT_LOADOUT = "EVT_LOADOUT";
+export const EVT_CARGO = "EVT_CARGO";
 
 // app actions
 export const ACT_PRESS_KEYS = "ACT_PRESS_KEYS";
