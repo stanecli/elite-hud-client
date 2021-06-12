@@ -6,35 +6,43 @@ import { ReactComponent as CircleButton } from "../static/SVG/btn_circle.svg";
 import { ReactComponent as CameraIcon } from "../static/SVG/camera.svg";
 import { RootState } from "../app/store";
 
-const connector = connect((state: RootState) => ({}));
+const connector = connect((state: RootState) => ({
+    status: state.hud.status,
+    loadout: state.hud.loadout,
+}));
 
 type Props = ConnectedProps<typeof connector>;
 
-const InfoPanel: FC<Props> = (props) => {
+const InfoPanel: FC<Props> = ({ status, loadout }) => {
     return (
         <div className="info-panel">
             <div className="commander-info">
-                <div className="commander-name font-big active-color">CMDR Randomeda</div>
-                <div className="credits font-medium">2,120,000,000 CR</div>
+                <div className="commander-name font-big active-color">CMDR {status?.commander}</div>
+                <div className="credits font-medium">{status?.credits.toLocaleString("en")} CR</div>
             </div>
             <div className="ship-info">
                 <div className="label font-small active-color">ship</div>
-                <div className="ship-type font-medium">federal corvette</div>
+                <div className="ship-type font-medium">{status?.shipType}</div>
                 <div className="label font-small active-color">ship name</div>
-                <div className="ship-name font-medium">flos mortem</div>
+                <div className="ship-name font-medium">{status?.shipName}</div>
                 <div className="label font-small active-color">insurance</div>
-                <div className="insurance font-medium">28,000,000 CR</div>
+                <div className="insurance font-medium">{loadout?.rebuy.toLocaleString("en")} CR</div>
                 <div className="label font-small active-color">fuel</div>
                 <div className="fuel font-medium">
                     <div className="bar">
-                        <div className="filled" style={{ width: "50%" }}></div>
+                        <div
+                            className="filled"
+                            style={{ width: ((status?.fuelLevel || 0) / (status?.fuelCapacity || 1)) * 100 + "%" }}
+                        ></div>
                     </div>
                     <div className="value">
-                        <span className="current">12</span>/<span className="max">64</span>T
+                        <span className="current">{status?.fuelLevel.toFixed(1)}</span>
+                        <span className="separator">/</span>
+                        <span className="max">{status?.fuelCapacity}</span>T
                     </div>
                 </div>
                 <div className="label font-small active-color">jump range</div>
-                <div className="jump-range">24.6 LY</div>
+                <div className="jump-range">{loadout?.maxJumpRange.toFixed(2)} LY</div>
             </div>
             <div className="cargo">
                 <div className="title font-big active-color">cargo</div>
@@ -43,7 +51,9 @@ const InfoPanel: FC<Props> = (props) => {
                         <div className="filled" style={{ width: "50%" }}></div>
                     </div>
                     <div className="value">
-                        <span className="current">12</span>/<span className="max">64</span>T
+                        <span className="current">12</span>
+                        <span className="separator">/</span>
+                        <span className="max">{loadout?.cargoCapacity}</span>T
                     </div>
                 </div>
                 <div className="cargo-item font-small">alexandrite (45)</div>

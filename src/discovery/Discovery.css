@@ -41,7 +41,6 @@
     padding-top: 25px;
     padding-bottom: 20px;
     height: 110px;
-    border-bottom: 1px solid var(--normal);
     box-sizing: border-box;
 }
 
@@ -51,7 +50,12 @@
 }
 
 .button .label {
+    border-top: 1px solid var(--normal);
     text-align: center;
     font-size: 18px;
     line-height: 46px;
+}
+
+.button.horizontal .loader {
+    margin-top: 10px;
 }

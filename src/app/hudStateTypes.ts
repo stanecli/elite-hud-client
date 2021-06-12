@@ -1,6 +1,32 @@
 export interface HudState {
     status?: StatusState;
     ship: ShipControlState;
+    fsd: FSDState;
+    loadout?: LoadoutSate;
+}
+
+export interface LoadoutSate {
+    hullHealth: number;
+    rebuy: number;
+    maxJumpRange: number;
+    cargoCapacity: number;
+}
+
+export interface FSDState {
+    isSuperCruiseCharging: boolean;
+    isHyperJumpCharging: boolean;
+    isDropping: boolean;
+    status: FSDStatus;
+    isCharging: boolean;
+    isJumping: boolean;
+    onCooldown: boolean;
+    massLocked: boolean;
+}
+
+export enum FSDStatus {
+    Thrusters,
+    SuperCruise,
+    HyerpJump,
 }
 
 export interface StatusState {

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { ReactComponent as SmallButtonBothSidedActive } from "./static/SVG/btn_sm_both_active.svg";
-import { ReactComponent as SmallButtonBothSidedNormal } from "./static/SVG/btn_sm_both.svg";
-import { ReactComponent as SmallButtonRightSidedActive } from "./static/SVG/btn_sm_side_active.svg";
-import { ReactComponent as SmallButtonRightSidedNormal } from "./static/SVG/btn_sm_side.svg";
+import { ReactComponent as SmallButtonBothSidedActive } from "../static/SVG/btn_sm_both_active.svg";
+import { ReactComponent as SmallButtonBothSidedNormal } from "../static/SVG/btn_sm_both.svg";
+import { ReactComponent as SmallButtonRightSidedActive } from "../static/SVG/btn_sm_side_active.svg";
+import { ReactComponent as SmallButtonRightSidedNormal } from "../static/SVG/btn_sm_side.svg";
 
 export enum ButtonSide {
     Left,

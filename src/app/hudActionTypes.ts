@@ -1,18 +1,27 @@
 import {
     ACT_PRESS_KEYS,
     EVT_CARGO_SCOOP,
+    EVT_DROPPING_OUT,
+    EVT_FSD_CHARGING,
+    EVT_FSD_COOLDOWN,
     EVT_GUI_FOCUS,
     EVT_HARDPOINTS,
     EVT_HEADLIGHTS,
     EVT_HUD,
+    EVT_HYPERJUMP,
+    EVT_HYPERJUMP_CHARGING,
     EVT_LANDING_GEAR,
+    EVT_LOADOUT,
     EVT_LOAD_GAME,
+    EVT_MASS_LOCK,
     EVT_NIGHTVISION,
     EVT_ORBIT_LINES,
     EVT_ROTATIONAL_CORRECTION,
     EVT_SILENT_RUNNING,
+    EVT_SUPERCRUISE,
+    EVT_SUPERCRUISE_CHARGING,
 } from "./hudActions";
-import { LoadGameData, ShipGuiFocus } from "./hudStateTypes";
+import { LoadGameData, LoadoutSate, ShipGuiFocus } from "./hudStateTypes";
 
 export interface LoadGameAction {
     type: typeof EVT_LOAD_GAME;
@@ -80,6 +89,48 @@ export interface GuiFocusChangedAction {
     data: ShipGuiFocus;
 }
 
+export interface IsCharingChanged {
+    type: typeof EVT_FSD_CHARGING;
+    data: boolean;
+}
+export interface OnCoolDownChanged {
+    type: typeof EVT_FSD_COOLDOWN;
+    data: boolean;
+}
+export interface IsJumpingChanged {
+    type: typeof EVT_HYPERJUMP;
+    data: boolean;
+}
+export interface InSuperCruiseChanged {
+    type: typeof EVT_SUPERCRUISE;
+    data: boolean;
+}
+
+export interface LoadoutAction {
+    type: typeof EVT_LOADOUT;
+    data: LoadoutSate;
+}
+
+export interface MassLockChangedAction {
+    type: typeof EVT_MASS_LOCK;
+    data: boolean;
+}
+
+export interface DroppingChangedAction {
+    type: typeof EVT_DROPPING_OUT;
+    data: boolean;
+}
+
+export interface HyperJumpCharingChangedAction {
+    type: typeof EVT_HYPERJUMP_CHARGING;
+    data: boolean;
+}
+
+export interface SuperCruiseChargingChangedAction {
+    type: typeof EVT_SUPERCRUISE_CHARGING;
+    data: boolean;
+}
+
 export type HudActionTypes =
     | LoadGameAction
     | PressKeysAction
@@ -92,4 +143,13 @@ export type HudActionTypes =
     | RotationalCorrectionChangedAction
     | HUDChangedAction
     | GuiFocusChangedAction
-    | HardpointsChangedAction;
+    | IsCharingChanged
+    | OnCoolDownChanged
+    | IsJumpingChanged
+    | InSuperCruiseChanged
+    | HardpointsChangedAction
+    | LoadoutAction
+    | DroppingChangedAction
+    | SuperCruiseChargingChangedAction
+    | HyperJumpCharingChangedAction
+    | MassLockChangedAction;

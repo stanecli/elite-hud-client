@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import "../Buttons.css";
 import "./ShipControls.css";
-import ButtonSmall, { ButtonSide } from "../ButtonSmall";
 
 // icons
 import { ReactComponent as LinesFederalCrovette } from "../static/SVG/lines_federal_corvette.svg";
@@ -27,15 +25,17 @@ import {
     toggleSilentRunning,
 } from "./shipControlActions";
 import { RootState } from "../app/store";
+import ButtonSmall, { ButtonSide } from "../buttons/ButtonSmall";
 
 const connector = connect((state: RootState) => ({
     ship: state.hud.ship,
     shipType: state.hud.status?.shipType,
+    loadout: state.hud.loadout,
 }));
 
 type Props = ConnectedProps<typeof connector>;
 
-const ShipControls: FC<Props> = ({ ship, shipType }) => {
+const ShipControls: FC<Props> = ({ ship, shipType, loadout }) => {
     return (
         <div className="ship-controls">
             <div className="top-row">
@@ -71,7 +71,7 @@ const ShipControls: FC<Props> = ({ ship, shipType }) => {
                         <LandingGear width="35" />
                     </ButtonSmall>
                     <div className="hull info">
-                        <div className="percent">100%</div>
+                        <div className="percent">{((loadout?.hullHealth || 0) * 100).toFixed(0)}%</div>
                         <div className="label">hull</div>
                     </div>
                 </div>

@@ -1,0 +1,24 @@
+.loader {
+    position: absolute;
+    top: 23px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.left .loader {
+    padding-left: 40px;
+}
+
+.right .loader {
+    padding-right: 40px;
+}
+
+.loading .icon {
+    opacity: 0;
+}
+
+.loading .loader {
+    display: flex;
+}

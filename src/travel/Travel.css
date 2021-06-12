@@ -11,7 +11,7 @@
 .button.vertical {
     position: relative;
     height: 167px;
-    padding-top: 30px;
+    padding: 30px 80px;
     box-sizing: border-box;
 }
 
@@ -19,19 +19,22 @@
     height: 188px;
     width: 304px;
     box-sizing: border-box;
-    padding: 20px 50px;
+    padding: 20px 80px;
 }
 
 .button.vertical .label {
     line-height: 1.4;
+    padding-top: 13px;
+}
+
+.button.vertical.arrow .label {
+    padding-top: 10px;
 }
 
 .button.vertical .icon {
     width: 140px;
     margin: auto;
     padding-bottom: 15px;
-    border-bottom: 1px solid;
-    margin-bottom: 15px;
 }
 
 .button.vertical .icon svg {
@@ -44,10 +47,46 @@
 }
 
 .button.vertical.arrow.flip {
-    padding-top: 50px;
+    padding-top: 35px;
 }
 
 .button.vertical.arrow.up .icon {
     padding-bottom: 10px;
-    margin-bottom: 10px;
+}
+
+@keyframes pulsate {
+    0% {
+        filter: hue-rotate(173deg) saturate(0.3) brightness(2) drop-shadow(0 0 6px var(--active));
+    }
+    100% {
+        filter: hue-rotate(173deg) saturate(0.5) brightness(1.6) drop-shadow(0 0 6px var(--active-glow));
+    }
+}
+
+@keyframes text-blink {
+    0% {
+        color: transparent;
+    }
+    49% {
+        color: transparent;
+    }
+    50% {
+        color: var(--normal);
+    }
+    100% {
+        color: var(--normal);
+    }
+}
+
+.button.vertical.loading .loader {
+    margin-top: 15px;
+}
+
+.button.vertical.loading {
+    filter: none;
+    animation: pulsate 0.7s infinite alternate linear;
+}
+
+.button.vertical.loading .label {
+    animation: text-blink 0.5s infinite alternate linear;
 }

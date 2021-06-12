@@ -28,3 +28,20 @@ body {
     font-size: 15px;
     text-transform: uppercase;
 }
+
+svg {
+    display: block;
+}
+
+.middle-column {
+    max-width: 724px;
+}
+
+.layout {
+    /* padding-top: 130px; */
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    max-width: 1920px;
+    margin: auto;
+}
