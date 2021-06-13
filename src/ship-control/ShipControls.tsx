@@ -34,11 +34,12 @@ const connector = connect((state: RootState) => ({
     loadout: state.hud.loadout,
     silentRunning: ((state.hud.ship.flags || 0) & ShipFlags.SilentRunning) > 0,
     shieldsOn: ((state.hud.ship.flags || 0) & ShipFlags.Shields) > 0,
+    overHeating: ((state.hud.ship.flags || 0) & ShipFlags.Overheating) > 0,
 }));
 
 type Props = ConnectedProps<typeof connector>;
 
-const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shieldsOn }) => {
+const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shieldsOn, overHeating }) => {
     return (
         <div className="ship-controls">
             <div className="top-row">
@@ -78,9 +79,16 @@ const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shiel
                         <div className="label">hull</div>
                     </div>
                 </div>
-                <div className="center">
+                <div
+                    className={`center ${ship.hardpoints ? "hardpoints-active" : ""} ${
+                        ship.cargoScoop ? "cargoscoop-active" : ""
+                    } ${ship.gear ? "landinggear-active" : ""} ${ship.lights ? "headlights-active" : ""} ${
+                        ship.nightVision ? "nightvision-active" : ""
+                    } ${silentRunning ? "silentrunning-active" : ""}`}
+                >
+                    {overHeating && <div className={`overheating-label`}>overheating</div>}
                     <LinesFederalCrovette width={294} height={432} className="lines" />
-                    <div className={`ship-image ${shipType}`}></div>
+                    <div className={`ship-image ${shipType} ${overHeating ? "overheating" : ""}`}></div>
                 </div>
                 <div className="right-side">
                     <ButtonSmall

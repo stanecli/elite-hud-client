@@ -1,5 +1,6 @@
 import {
     ACT_PRESS_KEYS,
+    EVT_ANALYSIS_MODE,
     EVT_CARGO,
     EVT_CARGO_SCOOP,
     EVT_DROPPING_OUT,
@@ -143,6 +144,11 @@ export interface ShipFlagsChanged {
     data: ShipFlags;
 }
 
+export interface AnalysisModeChanged {
+    type: typeof EVT_ANALYSIS_MODE;
+    data: boolean;
+}
+
 export type HudActionTypes =
     | InitializeAction
     | PressKeysAction
@@ -166,4 +172,5 @@ export type HudActionTypes =
     | HyperJumpCharingChangedAction
     | MassLockChangedAction
     | CargoChangedAction
+    | AnalysisModeChanged
     | ShipFlagsChanged;

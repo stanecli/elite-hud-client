@@ -1,4 +1,5 @@
 import {
+    EVT_ANALYSIS_MODE,
     EVT_CARGO,
     EVT_CARGO_SCOOP,
     EVT_DROPPING_OUT,
@@ -158,6 +159,9 @@ export const hudReducer = produce((draft: HudState, action: HudActionTypes) => {
             break;
         case EVT_CARGO:
             draft.cargo = action.data;
+            break;
+        case EVT_ANALYSIS_MODE:
+            draft.ship.analysisMode = action.data;
             break;
     }
 }, initialState);

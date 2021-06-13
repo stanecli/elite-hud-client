@@ -1,8 +1,3 @@
-.button,
-.camera-button {
-    user-select: none;
-}
-
 .button.small {
     width: 202px;
     height: 112px;
@@ -75,15 +70,22 @@
 }
 
 .button.active,
-.camera-button.active {
+.camera-button.active,
+.hardpoints-active #hardpoints-blueprint-line,
+.cargoscoop-active #cargoscoop-blueprint-line,
+.landinggear-active #landinggear-blueprint-line,
+.headlights-active #headlights-blueprint-line,
+.nightvision-active #nightvision-blueprint-line {
     filter: hue-rotate(173deg) saturate(0.5) brightness(1.6) drop-shadow(0 0 6px var(--active-glow));
 }
 
-.button.alarm {
+.button.alarm,
+#silentrunning-blueprint-line {
     filter: hue-rotate(340deg) saturate(1.6) brightness(1);
 }
 
-.button.alarm.active {
+.button.alarm.active,
+.silentrunning-active #silentrunning-blueprint-line {
     filter: hue-rotate(21deg) saturate(1) brightness(1.5) drop-shadow(0 0 6px var(--alarm-active-glow));
 }
 

@@ -18,6 +18,7 @@ export const EVT_ROTATIONAL_CORRECTION = "EVT_ROTATIONAL_CORRECTION";
 export const EVT_ORBIT_LINES = "EVT_ORBIT_LINES";
 export const EVT_GUI_FOCUS = "EVT_GUI_FOCUS";
 export const EVT_SHIPFLAGS = "EVT_SHIPFLAGS";
+export const EVT_ANALYSIS_MODE = "EVT_ANALYSIS_MODE";
 
 // fsd events
 export const EVT_SUPERCRUISE = "EVT_SUPERCRUISE"; // fired when entereing / dropping from supercruise

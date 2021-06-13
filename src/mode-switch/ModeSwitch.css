@@ -11,19 +11,42 @@
     padding: 10px;
     width: 185px;
     text-align: center;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+}
+
+.mode * {
+    box-sizing: border-box;
 }
 
 .mode.active {
-    border: 1px solid;
+    border-color: var(--normal);
+    animation: flash 0.3s;
+}
+
+@keyframes flash {
+    0% {
+        background-color: transparent;
+        border-color: transparent;
+    }
+    30% {
+        background-color: var(--normal);
+        border-color: var(--normal);
+    }
+    100% {
+        background-color: transparent;
+        border-color: var(--normal);
+    }
 }
 
 .left-bracket,
 .right-bracket {
     position: absolute;
-    top: 0;
-    height: 100%;
-    width: 15px;
+    top: -1px;
+    height: 50px;
+    width: 10px;
     border: 1px solid;
+    margin: 0;
 }
 
 .mode.active .left-bracket,
@@ -32,12 +55,12 @@
 }
 
 .left-bracket {
-    left: 0;
+    left: -1px;
     border-right: none;
 }
 
 .right-bracket {
-    right: 0;
+    right: -1px;
     border-left: none;
 }
 
@@ -67,7 +90,7 @@
 }
 
 .separator-line {
-    width: 160px;
+    width: 200px;
     height: 1px;
     background: var(--normal);
     position: relative;

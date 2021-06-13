@@ -67,3 +67,32 @@
 .ship-controls .right-side .button:first-child {
     margin-top: 0;
 }
+
+.overheating {
+    animation: alarm-blink 1s infinite;
+}
+
+.overheating-label {
+    animation: alarm-blink 1s infinite;
+    border: 1px solid;
+    padding: 6px 15px;
+    position: absolute;
+    left: 50%;
+    top: 35px;
+    transform: translate(-50%, 0);
+}
+
+@keyframes alarm-blink {
+    0% {
+        filter: hue-rotate(340deg) saturate(1.6) brightness(1);
+    }
+    49% {
+        filter: hue-rotate(340deg) saturate(1.6) brightness(1);
+    }
+    50% {
+        filter: hue-rotate(21deg) saturate(1) brightness(1.5) drop-shadow(0 0 6px var(--alarm-active-glow));
+    }
+    100% {
+        filter: hue-rotate(21deg) saturate(1) brightness(1.5) drop-shadow(0 0 6px var(--alarm-active-glow));
+    }
+}

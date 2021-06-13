@@ -87,7 +87,12 @@
     position: absolute;
     top: 50%;
     left: 39px;
-    transform: translate(0, -50%);
+    transform: scale(1) translate(0, -50%) rotate(0deg);
+    transition: cubic-bezier(0.52, -1.1, 0.32, 1.82) 0.4s;
+}
+
+.camera-button.active .icon {
+    transform: scale(1.4) translate(0, -35%) rotate(45deg);
 }
 
 .camera-button .label {
