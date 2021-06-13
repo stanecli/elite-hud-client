@@ -1,10 +1,15 @@
 export interface HudState {
-    status?: StatusState;
-    loadout?: LoadoutSate;
-    cargo?: CargoState;
-    shipFlags?: ShipFlags;
-    ship: ShipControlState;
-    fsd: FSDState;
+    status?: Partial<StatusState>;
+    loadout: Partial<LoadoutSate>;
+    cargo: Partial<CargoState>;
+    ship: Partial<ShipState>;
+}
+
+export interface InitializeData {
+    loadGameData: LoadGameData;
+    loadout: LoadoutSate;
+    cargo: CargoState;
+    ship: ShipState;
 }
 
 export interface LoadoutSate {
@@ -55,7 +60,6 @@ export interface StatusState {
     fuelLevel: number;
     fuelCapacity: number;
     credits: number;
-    insurance: number;
 }
 
 export enum ShipFlags {
@@ -109,17 +113,84 @@ export interface LoadGameData {
     loan: number;
 }
 
-export interface ShipControlState {
-    landingGear: boolean;
-    nightVision: boolean;
-    headlights: boolean;
-    cargoSoop: boolean;
-    hardpoints: boolean;
-    silentRunning: boolean;
+export interface ShipState extends ShipData {
     rotationalCorrection: boolean;
     orbitLines: boolean;
     hud: boolean;
+    isDropping: boolean;
+    isHyperJumpCharging: boolean;
+    isSuperCruiseCharging: boolean;
+    fsdStatus: FSDStatus;
+}
+
+export interface ShipData {
+    flags: ShipFlags;
+    inInterdiction: boolean;
+    inMothership: boolean;
+    inFighter: boolean;
+    inSrv: boolean;
+    analysisMode: boolean;
+    nightVision: boolean;
+    altitudeFromAverageRadius: boolean;
+    inDanger: boolean;
+    hasLatLong: boolean;
+    overheating: boolean;
+    lowFuel: boolean;
+    available: boolean;
+    docked: boolean;
+    landed: boolean;
+    gear: boolean;
+    shields: boolean;
+    supercruise: boolean;
+    flightAssist: boolean;
+    hardpoints: boolean;
+    winging: boolean;
+    lights: boolean;
+    silentRunning: boolean;
+    scooping: boolean;
+    srvHandbreak: boolean;
+    srvTurrent: boolean;
+    srvNearShip: boolean;
+    srvDriveAssist: boolean;
+    massLocked: boolean;
+    fsdCharging: boolean;
+    fsdCooldown: boolean;
+    cargoScoop: boolean;
+    fsdJump: boolean;
+    srvHighBeam: boolean;
+    pips: ShipPips;
+    fireGroup: number;
     guiFocus: ShipGuiFocus;
+    fuel: ShipFuel;
+    cargo: number;
+    legalState: ShipLegalState;
+    latitude: number;
+    altitude: number;
+    longitude: number;
+    heading: number;
+    body: string;
+    bodyRadius: number;
+}
+
+export enum ShipLegalState {
+    Clean = 0,
+    IllegalCargo = 1,
+    Speeding = 2,
+    Wanted = 3,
+    Hostile = 4,
+    PassengerWanted = 5,
+    Warrant = 6,
+}
+
+export interface ShipFuel {
+    main: number;
+    reservoir: number;
+}
+
+export interface ShipPips {
+    system: number;
+    engines: number;
+    weapons: number;
 }
 
 export enum ShipGuiFocus {

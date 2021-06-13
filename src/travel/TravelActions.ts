@@ -4,7 +4,7 @@ import { FSDStatus } from "../app/hudStateTypes";
 import { store } from "../app/store";
 
 export const emergencyDrop = () => {
-    if (store.getState().hud.fsd.status !== FSDStatus.SuperCruise) {
+    if (store.getState().hud.ship.fsdStatus !== FSDStatus.SuperCruise) {
         return;
     }
     store.dispatch<PressKeysAction>({

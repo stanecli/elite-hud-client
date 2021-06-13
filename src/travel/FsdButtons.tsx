@@ -20,12 +20,12 @@ import { ReactComponent as SuperCruise } from "../static/SVG/supercruise.svg";
 import { ReactComponent as Thrusters } from "../static/SVG/thrusters.svg";
 
 const connector = connect((state: RootState) => ({
-    onCoolDown: state.hud.fsd.onCooldown,
-    massLocked: state.hud.fsd.massLocked,
-    isSuperCruiseCharging: state.hud.fsd.isSuperCruiseCharging,
-    isHyperJumpCharging: state.hud.fsd.isHyperJumpCharging,
-    isDropping: state.hud.fsd.isDropping,
-    status: state.hud.fsd.status,
+    onCoolDown: state.hud.ship.fsdCooldown,
+    massLocked: state.hud.ship.massLocked,
+    isSuperCruiseCharging: state.hud.ship.isSuperCruiseCharging,
+    isHyperJumpCharging: state.hud.ship.isHyperJumpCharging,
+    isDropping: state.hud.ship.isDropping,
+    status: state.hud.ship.fsdStatus,
     ship: state.hud.ship,
 }));
 
@@ -80,9 +80,9 @@ const FsdButtons: FC<Props> = ({
         ? "mass locked"
         : ship.hardpoints
         ? "hardpoints"
-        : ship.cargoSoop
+        : ship.cargoScoop
         ? "cargo scoop"
-        : ship.landingGear
+        : ship.gear
         ? "landing gear"
         : "";
     if (onCoolDown || massLocked) {
@@ -97,7 +97,7 @@ const FsdButtons: FC<Props> = ({
         drop = ButtonState.disabled;
         superCruise = ButtonState.disabled;
     }
-    if (ship.hardpoints || ship.cargoSoop || ship.landingGear) {
+    if (ship.hardpoints || ship.cargoScoop || ship.gear) {
         hyperJump = ButtonState.disabled;
         superCruise = ButtonState.disabled;
     }

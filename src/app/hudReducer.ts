@@ -10,9 +10,9 @@ import {
     EVT_HUD,
     EVT_HYPERJUMP,
     EVT_HYPERJUMP_CHARGING,
+    EVT_INITIALIZE,
     EVT_LANDING_GEAR,
     EVT_LOADOUT,
-    EVT_LOAD_GAME,
     EVT_MASS_LOCK,
     EVT_NIGHTVISION,
     EVT_ORBIT_LINES,
@@ -23,238 +23,141 @@ import {
     EVT_SUPERCRUISE_CHARGING,
 } from "./hudActions";
 import { HudActionTypes } from "./hudActionTypes";
-import { FSDStatus, HudState, ShipGuiFocus } from "./hudStateTypes";
+import { FSDStatus, HudState } from "./hudStateTypes";
+import produce from "immer";
+import { store } from "./store";
 
 const initialState: HudState = {
-    ship: {
-        headlights: false,
-        landingGear: false,
-        nightVision: false,
-        cargoSoop: false,
-        hardpoints: false,
-        hud: false,
-        orbitLines: false,
-        rotationalCorrection: false,
-        silentRunning: false,
-        guiFocus: ShipGuiFocus.NoFocus,
-    },
-    fsd: {
-        status: FSDStatus.Thrusters,
-        isCharging: false,
-        onCooldown: false,
-        isJumping: false,
-        massLocked: false,
-        isDropping: false,
-        isHyperJumpCharging: false,
-        isSuperCruiseCharging: false,
-    },
+    cargo: {},
+    loadout: {},
+    ship: {},
 };
 
-export function hudReducer(state = initialState, action: HudActionTypes): HudState {
+export const hudReducer = produce((draft: HudState, action: HudActionTypes) => {
     switch (action.type) {
-        case EVT_LOAD_GAME:
-            return {
-                ...state,
-                status: {
-                    commander: action.data.commander,
-                    credits: action.data.credits,
-                    fuelCapacity: action.data.fuelCapacity,
-                    fuelLevel: action.data.fuelLevel,
-                    insurance: action.data.loan,
-                    shipName: action.data.shipName,
-                    shipType: action.data.ship,
-                    shipTypeLocalised: action.data.ship_Localised,
-                },
+        case EVT_INITIALIZE:
+            const ship = action.data.ship;
+            const fsdStatus =
+                ship.supercruise && ship.fsdJump
+                    ? FSDStatus.HyerpJump
+                    : ship.supercruise
+                    ? FSDStatus.SuperCruise
+                    : FSDStatus.Thrusters;
+            draft.status = {
+                commander: action.data.loadGameData.commander,
+                credits: action.data.loadGameData.credits,
+                fuelCapacity: action.data.loadGameData.fuelCapacity,
+                fuelLevel: action.data.loadGameData.fuelLevel,
+                shipName: action.data.loadGameData.shipName,
+                shipType: action.data.loadGameData.ship,
+                shipTypeLocalised: action.data.loadGameData.ship_Localised,
             };
+            draft.cargo = action.data.cargo;
+            draft.loadout = action.data.loadout;
+            draft.ship = {
+                ...action.data.ship,
+                orbitLines: false,
+                rotationalCorrection: false,
+                hud: false,
+                isDropping: false,
+                isHyperJumpCharging: false,
+                isSuperCruiseCharging: false,
+                fsdStatus,
+            };
+            break;
         case EVT_SHIPFLAGS:
-            return {
-                ...state,
-                shipFlags: action.data,
-            };
+            draft.ship.flags = action.data;
+            break;
         case EVT_LANDING_GEAR:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    landingGear: action.data,
-                },
-            };
+            draft.ship.gear = action.data;
+            break;
         case EVT_NIGHTVISION:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    nightVision: action.data,
-                },
-            };
+            draft.ship.nightVision = action.data;
+            break;
         case EVT_SILENT_RUNNING:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    silentRunning: action.data,
-                },
-            };
+            draft.ship.silentRunning = action.data;
+            break;
         case EVT_CARGO_SCOOP:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    cargoSoop: action.data,
-                },
-            };
+            draft.ship.cargoScoop = action.data;
+            break;
         case EVT_HARDPOINTS:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    hardpoints: action.data,
-                },
-            };
+            draft.ship.hardpoints = action.data;
+            break;
         case EVT_HEADLIGHTS:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    headlights: action.data,
-                },
-            };
+            draft.ship.lights = action.data;
+            break;
         case EVT_HUD:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    hud: action.data,
-                },
-            };
+            draft.ship.hud = action.data;
+            break;
         case EVT_ORBIT_LINES:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    orbitLines: action.data,
-                },
-            };
+            draft.ship.orbitLines = action.data;
+            break;
         case EVT_ROTATIONAL_CORRECTION:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    rotationalCorrection: action.data,
-                },
-            };
+            draft.ship.rotationalCorrection = action.data;
+            break;
         case EVT_GUI_FOCUS:
-            return {
-                ...state,
-                ship: {
-                    ...state.ship,
-                    guiFocus: action.data,
-                },
-            };
+            draft.ship.guiFocus = action.data;
+            break;
         case EVT_SUPERCRUISE:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    status: action.data ? FSDStatus.SuperCruise : FSDStatus.Thrusters,
-                    isHyperJumpCharging: false,
-                    isSuperCruiseCharging: false,
-                    isCharging: false,
-                    isJumping: false,
-                },
-            };
+            draft.ship.fsdStatus = action.data ? FSDStatus.SuperCruise : FSDStatus.Thrusters;
+            draft.ship.isHyperJumpCharging = false;
+            draft.ship.isSuperCruiseCharging = false;
+            draft.ship.fsdCharging = false;
+            draft.ship.fsdJump = false;
+            break;
         case EVT_FSD_CHARGING:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    isCharging: action.data,
-                    // guess from button press. if no buttons pressed, try to guess from fsd state
-                    isHyperJumpCharging:
-                        action.data &&
-                        !state.fsd.isSuperCruiseCharging &&
-                        (state.fsd.isHyperJumpCharging || state.fsd.status === FSDStatus.SuperCruise),
-                    isSuperCruiseCharging:
-                        action.data &&
-                        !state.fsd.isHyperJumpCharging &&
-                        (state.fsd.isSuperCruiseCharging || state.fsd.status === FSDStatus.Thrusters),
-                },
-            };
+            const state = store.getState().hud.ship;
+            draft.ship.fsdCharging = action.data;
+            // guess from button press. if no buttons pressed, try to guess from fsd state
+            draft.ship.isHyperJumpCharging =
+                action.data &&
+                !state.isSuperCruiseCharging &&
+                (state.isHyperJumpCharging || draft.ship.fsdStatus === FSDStatus.SuperCruise);
+            draft.ship.isSuperCruiseCharging =
+                action.data &&
+                !state.isHyperJumpCharging &&
+                (state.isSuperCruiseCharging || draft.ship.fsdStatus === FSDStatus.Thrusters);
+            break;
         case EVT_FSD_COOLDOWN:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    onCooldown: action.data,
-                },
-            };
+            draft.ship.fsdCooldown = action.data;
+            break;
         case EVT_HYPERJUMP: // entering SC or HYPER
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    isJumping: action.data,
-                    isHyperJumpCharging: false,
-                    isSuperCruiseCharging: false,
-                    status:
-                        state.fsd.status === FSDStatus.SuperCruise && action.data
-                            ? FSDStatus.HyerpJump
-                            : FSDStatus.SuperCruise,
-                },
-            };
+            draft.ship.fsdCharging = action.data;
+            draft.ship.fsdJump = action.data;
+            draft.ship.isHyperJumpCharging = false;
+            draft.ship.isSuperCruiseCharging = false;
+            draft.ship.fsdStatus =
+                draft.ship.fsdStatus === FSDStatus.SuperCruise && action.data
+                    ? FSDStatus.HyerpJump
+                    : FSDStatus.SuperCruise;
+            break;
         case EVT_LOADOUT:
-            return {
-                ...state,
-                loadout: action.data,
-            };
+            draft.loadout = action.data;
+            break;
         case EVT_MASS_LOCK:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    massLocked: action.data,
-                    status: FSDStatus.Thrusters,
-                    isHyperJumpCharging: false,
-                    isSuperCruiseCharging: false,
-                    isCharging: false,
-                    isJumping: false,
-                },
-            };
+            draft.ship.massLocked = action.data;
+            draft.ship.fsdStatus = FSDStatus.Thrusters;
+            draft.ship.isHyperJumpCharging = false;
+            draft.ship.isSuperCruiseCharging = false;
+            draft.ship.fsdCharging = false;
+            draft.ship.fsdJump = false;
+            break;
         case EVT_HYPERJUMP_CHARGING:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    isHyperJumpCharging: !state.fsd.isCharging,
-                    isCharging: !state.fsd.isCharging,
-                },
-            };
+            draft.ship.isHyperJumpCharging = action.data;
+            draft.ship.fsdCharging = action.data;
+            break;
         case EVT_SUPERCRUISE_CHARGING:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    isSuperCruiseCharging: action.data,
-                    isCharging: action.data,
-                },
-            };
+            draft.ship.isSuperCruiseCharging = action.data;
+            draft.ship.fsdCharging = action.data;
+            break;
         case EVT_DROPPING_OUT:
-            return {
-                ...state,
-                fsd: {
-                    ...state.fsd,
-                    isDropping: action.data,
-                    isHyperJumpCharging: false,
-                    isSuperCruiseCharging: false,
-                    isCharging: false,
-                },
-            };
+            draft.ship.isDropping = action.data;
+            draft.ship.isHyperJumpCharging = false;
+            draft.ship.isSuperCruiseCharging = false;
+            draft.ship.fsdCharging = false;
+            break;
         case EVT_CARGO:
-            return {
-                ...state,
-                cargo: action.data,
-            };
-        default:
-            return state;
+            draft.cargo = action.data;
+            break;
     }
-}
+}, initialState);

@@ -12,7 +12,7 @@ export enum ButtonSide {
 
 interface Props {
     side: ButtonSide;
-    active: boolean;
+    active?: boolean;
     title: string;
     alarm?: boolean;
     reverse?: boolean;
@@ -27,8 +27,8 @@ const ButtonSmall: FC<Props> = ({
     title,
     onText = "on",
     offText = "off",
+    active = false,
     alarm,
-    active,
     reverse,
     onClick,
 }) => {

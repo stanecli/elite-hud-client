@@ -32,8 +32,8 @@ const connector = connect((state: RootState) => ({
     ship: state.hud.ship,
     shipType: state.hud.status?.shipType,
     loadout: state.hud.loadout,
-    silentRunning: ((state.hud.shipFlags || 0) & ShipFlags.SilentRunning) > 0,
-    shieldsOn: ((state.hud.shipFlags || 0) & ShipFlags.Shields) > 0,
+    silentRunning: ((state.hud.ship.flags || 0) & ShipFlags.SilentRunning) > 0,
+    shieldsOn: ((state.hud.ship.flags || 0) & ShipFlags.Shields) > 0,
 }));
 
 type Props = ConnectedProps<typeof connector>;
@@ -56,7 +56,7 @@ const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shiel
                     <ButtonSmall
                         side={ButtonSide.Right}
                         title="cargo scoop"
-                        active={ship.cargoSoop}
+                        active={ship.cargoScoop}
                         onText="open"
                         offText="closed"
                         onClick={toggleCargoScoop}
@@ -68,7 +68,7 @@ const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shiel
                         title="landing gear"
                         offText="retracted"
                         onText="deployed"
-                        active={ship.landingGear}
+                        active={ship.gear}
                         onClick={toggleLandingGear}
                     >
                         <LandingGear width="35" />
@@ -86,7 +86,7 @@ const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shiel
                     <ButtonSmall
                         side={ButtonSide.Left}
                         title="headlights"
-                        active={ship.headlights}
+                        active={ship.lights}
                         onClick={toggleHeadlights}
                     >
                         <Headlights width="32" />

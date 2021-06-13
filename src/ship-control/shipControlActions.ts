@@ -34,7 +34,7 @@ export const toggleLandingGear = () => {
     });
     store.dispatch<LandingGearChangedAction>({
         type: EVT_LANDING_GEAR,
-        data: !store.getState().hud.ship.landingGear,
+        data: !store.getState().hud.ship.gear,
     });
 };
 
@@ -58,7 +58,7 @@ export const toggleCargoScoop = () => {
     });
     store.dispatch<CargoScoopChangedAction>({
         type: EVT_CARGO_SCOOP,
-        data: !store.getState().hud.ship.cargoSoop,
+        data: !store.getState().hud.ship.cargoScoop,
     });
 };
 
@@ -82,12 +82,12 @@ export const toggleHeadlights = () => {
     });
     store.dispatch<HeadlightsChangedAction>({
         type: EVT_HEADLIGHTS,
-        data: !store.getState().hud.ship.headlights,
+        data: !store.getState().hud.ship.lights,
     });
 };
 
 export const toggleSilentRunning = () => {
-    const state = (store.getState().hud.shipFlags || 0) & ShipFlags.SilentRunning;
+    const state = (store.getState().hud.ship.flags || 0) & ShipFlags.SilentRunning;
     store.dispatch<PressKeysAction>({
         type: ACT_PRESS_KEYS,
         keys: ["Delete"],
@@ -97,8 +97,8 @@ export const toggleSilentRunning = () => {
         type: EVT_SHIPFLAGS,
         data:
             state > 0
-                ? (store.getState().hud.shipFlags || 0) & ~ShipFlags.SilentRunning
-                : (store.getState().hud.shipFlags || 0) | ShipFlags.SilentRunning,
+                ? (store.getState().hud.ship.flags || 0) & ~ShipFlags.SilentRunning
+                : (store.getState().hud.ship.flags || 0) | ShipFlags.SilentRunning,
     });
 };
 

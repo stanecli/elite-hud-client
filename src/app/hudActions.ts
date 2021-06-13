@@ -1,5 +1,5 @@
 // app events
-export const EVT_LOAD_GAME = "EVT_LOAD_GAME";
+export const EVT_INITIALIZE = "EVT_INITIALIZE";
 export const EVT_LOADOUT = "EVT_LOADOUT";
 export const EVT_CARGO = "EVT_CARGO";
 
