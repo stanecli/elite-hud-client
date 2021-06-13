@@ -17,6 +17,7 @@ import {
     EVT_NIGHTVISION,
     EVT_ORBIT_LINES,
     EVT_ROTATIONAL_CORRECTION,
+    EVT_SHIPFLAGS,
     EVT_SILENT_RUNNING,
     EVT_SUPERCRUISE,
     EVT_SUPERCRUISE_CHARGING,
@@ -64,6 +65,11 @@ export function hudReducer(state = initialState, action: HudActionTypes): HudSta
                     shipType: action.data.ship,
                     shipTypeLocalised: action.data.ship_Localised,
                 },
+            };
+        case EVT_SHIPFLAGS:
+            return {
+                ...state,
+                shipFlags: action.data,
             };
         case EVT_LANDING_GEAR:
             return {

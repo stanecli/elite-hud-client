@@ -18,11 +18,12 @@ import {
     EVT_NIGHTVISION,
     EVT_ORBIT_LINES,
     EVT_ROTATIONAL_CORRECTION,
+    EVT_SHIPFLAGS,
     EVT_SILENT_RUNNING,
     EVT_SUPERCRUISE,
     EVT_SUPERCRUISE_CHARGING,
 } from "./hudActions";
-import { CargoState, LoadGameData, LoadoutSate, ShipGuiFocus } from "./hudStateTypes";
+import { CargoState, LoadGameData, LoadoutSate, ShipFlags, ShipGuiFocus } from "./hudStateTypes";
 
 export interface LoadGameAction {
     type: typeof EVT_LOAD_GAME;
@@ -137,6 +138,11 @@ export interface CargoChangedAction {
     data: CargoState;
 }
 
+export interface ShipFlagsChanged {
+    type: typeof EVT_SHIPFLAGS;
+    data: ShipFlags;
+}
+
 export type HudActionTypes =
     | LoadGameAction
     | PressKeysAction
@@ -159,4 +165,5 @@ export type HudActionTypes =
     | SuperCruiseChargingChangedAction
     | HyperJumpCharingChangedAction
     | MassLockChangedAction
-    | CargoChangedAction;
+    | CargoChangedAction
+    | ShipFlagsChanged;

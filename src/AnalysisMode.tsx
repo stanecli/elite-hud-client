@@ -1,39 +1,25 @@
 import React, { FC } from "react";
-import { connect, ConnectedProps } from "react-redux";
+import "./buttons/Buttons.css";
+import Discovery from "./discovery/Discovery";
 import InfoPanel from "./info-panel/InfoPanel";
 import ShipControls from "./ship-control/ShipControls";
-import { RootState } from "./app/store";
-import Discovery from "./discovery/Discovery";
 import Travel from "./travel/Travel";
-import "./buttons/Buttons.css";
 
-const connector = connect((state: RootState) => ({
-    connected: state.session.connected,
-    status: state.hud.status,
-}));
-
-type Props = ConnectedProps<typeof connector>;
-
-const AnalysisMode: FC<Props> = ({ connected }) => {
+const AnalysisMode: FC = () => {
     return (
-        <div>
-            {!connected && <div className="">Connecting..</div>}
-            {connected && (
-                <div className="layout">
-                    <div className="left-side">
-                        <InfoPanel />
-                    </div>
-                    <div className="middle-column">
-                        <ShipControls />
-                        <Discovery />
-                    </div>
-                    <div className="right-side">
-                        <Travel />
-                    </div>
-                </div>
-            )}
-        </div>
+        <>
+            <div className="left-side">
+                <InfoPanel />
+            </div>
+            <div className="middle-column">
+                <ShipControls />
+                <Discovery />
+            </div>
+            <div className="right-side">
+                <Travel />
+            </div>
+        </>
     );
 };
 
-export default connector(AnalysisMode);
+export default AnalysisMode;

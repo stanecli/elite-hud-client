@@ -1,10 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import "./InfoPanel.css";
 
 import { ReactComponent as CircleButton } from "../static/SVG/btn_circle.svg";
 import { ReactComponent as CameraIcon } from "../static/SVG/camera.svg";
-import { RootState } from "../app/store";
+import { RootState, store } from "../app/store";
+import { KeyPressMode, PressKeysAction } from "../app/hudActionTypes";
+import { ACT_PRESS_KEYS } from "../app/hudActions";
 
 const connector = connect((state: RootState) => ({
     status: state.hud.status,
@@ -15,6 +17,7 @@ const connector = connect((state: RootState) => ({
 type Props = ConnectedProps<typeof connector>;
 
 const InfoPanel: FC<Props> = ({ status, loadout, cargo }) => {
+    const [camera, setCamera] = useState(false);
     return (
         <div className="info-panel">
             <div className="commander-info">
@@ -54,7 +57,7 @@ const InfoPanel: FC<Props> = ({ status, loadout, cargo }) => {
                     <div className="value">
                         <span className="current">{cargo?.count.value}</span>
                         <span className="separator">/</span>
-                        <span className="max">{cargo?.inventory.value.length}</span>T
+                        <span className="max">{loadout?.cargoCapacity}</span>T
                     </div>
                 </div>
                 {cargo?.inventory.value.map((item, i) => (
@@ -63,7 +66,17 @@ const InfoPanel: FC<Props> = ({ status, loadout, cargo }) => {
                     </div>
                 ))}
             </div>
-            <div className="camera-button">
+            <div
+                className={`camera-button ${camera ? "active" : ""}`}
+                onPointerDown={() => {
+                    setCamera(!camera);
+                    store.dispatch<PressKeysAction>({
+                        type: ACT_PRESS_KEYS,
+                        keys: ["LControlKey", "LMenu", "Space"],
+                        mode: KeyPressMode.Simultaneous,
+                    });
+                }}
+            >
                 <CircleButton className="bg" width={130} />
                 <CameraIcon width={70} className="icon" />
                 <div className="label font-medium">external camera</div>

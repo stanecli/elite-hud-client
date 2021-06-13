@@ -162,7 +162,7 @@ const FsdButtons: FC<Props> = ({
         <div className="middle-section">
             <div
                 className={`button vertical side top ${ButtonState[hyperJump]}`}
-                onClick={() => {
+                onPointerDown={() => {
                     if (
                         superCruise !== ButtonState.loading &&
                         (hyperJump === ButtonState.enabled || hyperJump === ButtonState.loading)
@@ -190,7 +190,7 @@ const FsdButtons: FC<Props> = ({
             </div>
             <div
                 className={`button vertical middle ${ButtonState[superCruise]}`}
-                onClick={() => {
+                onPointerDown={() => {
                     if (
                         hyperJump !== ButtonState.loading &&
                         (superCruise === ButtonState.enabled || superCruise === ButtonState.loading)
@@ -218,7 +218,7 @@ const FsdButtons: FC<Props> = ({
             </div>
             <div
                 className={`button vertical side flip ${ButtonState[drop]}`}
-                onClick={() => {
+                onPointerDown={() => {
                     if (drop === ButtonState.enabled) {
                         dispatch<DroppingChangedAction>({
                             type: EVT_DROPPING_OUT,

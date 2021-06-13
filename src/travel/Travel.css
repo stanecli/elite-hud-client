@@ -90,3 +90,7 @@
 .button.vertical.loading .label {
     animation: text-blink 0.5s infinite alternate linear;
 }
+
+.travel-controls {
+    width: 304px;
+}

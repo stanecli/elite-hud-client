@@ -1,0 +1,75 @@
+.mode > * {
+    display: inline-block;
+    line-height: 28px;
+    vertical-align: top;
+    margin: 0 5px;
+    position: relative;
+}
+
+.mode {
+    position: relative;
+    padding: 10px;
+    width: 185px;
+    text-align: center;
+}
+
+.mode.active {
+    border: 1px solid;
+}
+
+.left-bracket,
+.right-bracket {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 15px;
+    border: 1px solid;
+}
+
+.mode.active .left-bracket,
+.mode.active .right-bracket {
+    display: none;
+}
+
+.left-bracket {
+    left: 0;
+    border-right: none;
+}
+
+.right-bracket {
+    right: 0;
+    border-left: none;
+}
+
+.line.fade {
+    background: linear-gradient(90deg, var(--normal) 0%, var(--normal-transparent) 100%);
+    height: 1px;
+    width: 450px;
+    position: relative;
+    top: 23px;
+    margin: 0 15px;
+}
+
+.left.line.fade {
+    background: linear-gradient(90deg, var(--normal-transparent) 0%, var(--normal) 100%);
+}
+
+.mode-switch {
+    display: flex;
+    justify-content: center;
+}
+
+.mode-switch .center {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+}
+
+.separator-line {
+    width: 160px;
+    height: 1px;
+    background: var(--normal);
+    position: relative;
+    top: 23px;
+}

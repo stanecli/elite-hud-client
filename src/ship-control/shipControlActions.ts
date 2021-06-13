@@ -8,7 +8,7 @@ import {
     EVT_NIGHTVISION,
     EVT_ORBIT_LINES,
     EVT_ROTATIONAL_CORRECTION,
-    EVT_SILENT_RUNNING,
+    EVT_SHIPFLAGS,
 } from "../app/hudActions";
 import {
     CargoScoopChangedAction,
@@ -21,8 +21,9 @@ import {
     OrbitLinesChangedAction,
     PressKeysAction,
     RotationalCorrectionChangedAction,
-    SilentRunningChangedAction,
+    ShipFlagsChanged,
 } from "../app/hudActionTypes";
+import { ShipFlags } from "../app/hudStateTypes";
 import { store } from "../app/store";
 
 export const toggleLandingGear = () => {
@@ -86,14 +87,18 @@ export const toggleHeadlights = () => {
 };
 
 export const toggleSilentRunning = () => {
+    const state = (store.getState().hud.shipFlags || 0) & ShipFlags.SilentRunning;
     store.dispatch<PressKeysAction>({
         type: ACT_PRESS_KEYS,
         keys: ["Delete"],
         mode: KeyPressMode.Sequential,
     });
-    store.dispatch<SilentRunningChangedAction>({
-        type: EVT_SILENT_RUNNING,
-        data: !store.getState().hud.ship.silentRunning,
+    store.dispatch<ShipFlagsChanged>({
+        type: EVT_SHIPFLAGS,
+        data:
+            state > 0
+                ? (store.getState().hud.shipFlags || 0) & ~ShipFlags.SilentRunning
+                : (store.getState().hud.shipFlags || 0) | ShipFlags.SilentRunning,
     });
 };
 

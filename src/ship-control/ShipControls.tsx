@@ -26,16 +26,19 @@ import {
 } from "./shipControlActions";
 import { RootState } from "../app/store";
 import ButtonSmall, { ButtonSide } from "../buttons/ButtonSmall";
+import { ShipFlags } from "../app/hudStateTypes";
 
 const connector = connect((state: RootState) => ({
     ship: state.hud.ship,
     shipType: state.hud.status?.shipType,
     loadout: state.hud.loadout,
+    silentRunning: ((state.hud.shipFlags || 0) & ShipFlags.SilentRunning) > 0,
+    shieldsOn: ((state.hud.shipFlags || 0) & ShipFlags.Shields) > 0,
 }));
 
 type Props = ConnectedProps<typeof connector>;
 
-const ShipControls: FC<Props> = ({ ship, shipType, loadout }) => {
+const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shieldsOn }) => {
     return (
         <div className="ship-controls">
             <div className="top-row">
@@ -100,13 +103,13 @@ const ShipControls: FC<Props> = ({ ship, shipType, loadout }) => {
                         side={ButtonSide.Left}
                         title="silent running"
                         alarm={true}
-                        active={ship.silentRunning}
+                        active={silentRunning}
                         onClick={toggleSilentRunning}
                     >
                         <SilentRunning width="51" />
                     </ButtonSmall>
                     <div className="shields info">
-                        <div className="percent">100%</div>
+                        <div className="percent">{shieldsOn ? "on" : "off"}</div>
                         <div className="label">shields</div>
                     </div>
                 </div>

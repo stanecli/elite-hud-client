@@ -73,7 +73,8 @@
     transform: rotate(180deg);
 }
 
-.button.active {
+.button.active,
+.camera-button.active {
     filter: hue-rotate(173deg) saturate(0.5) brightness(1.6) drop-shadow(0 0 6px var(--active-glow));
 }
 

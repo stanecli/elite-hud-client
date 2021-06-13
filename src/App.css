@@ -2,6 +2,7 @@
 
 :root {
     --normal: #f76e01;
+    --normal-transparent: #f76e0100;
     --normal-glow: #f76e0154;
     --active: #a6fffe;
     --active-glow: #a6fffe54;
@@ -27,6 +28,9 @@ body {
     color: var(--normal);
     font-size: 15px;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 svg {
@@ -37,11 +41,19 @@ svg {
     max-width: 724px;
 }
 
-.layout {
-    /* padding-top: 130px; */
-    padding-top: 50px;
+.main {
+    padding-top: 45px;
     display: flex;
     justify-content: space-around;
     max-width: 1920px;
     margin: auto;
+}
+
+.main > .right-side,
+.main > .left-side {
+    width: 390px;
+}
+
+#root {
+    width: 100%;
 }
