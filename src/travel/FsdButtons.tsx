@@ -138,7 +138,7 @@ const FsdButtons: FC<Props> = ({
                         type: EVT_HYPERJUMP_CHARGING,
                         data: false,
                     }),
-                250000
+                25000
             );
         }
         return () => window.clearTimeout(timeout);

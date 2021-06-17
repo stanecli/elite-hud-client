@@ -1,18 +1,82 @@
 import { EventChannel, eventChannel } from "redux-saga";
-import { call, fork, put, take } from "redux-saga/effects";
+import { call, cancel, fork, put, take } from "redux-saga/effects";
 import { HudActionTypes } from "./hudActionTypes";
 import { sendSaga } from "./sendSaga";
-import { connect } from "./sessionSagas";
+import * as sessionActionCretors from "./sessionActionCreators";
+import { CONNECT } from "./sessionActions";
+import { ConnectAction, DisconnectAction } from "./sessionActionTypes";
 
 export function* rootSaga() {
-    const socket: WebSocket | undefined = yield call(connect);
-    if (socket) {
-        yield fork(receiveSaga, socket);
-        yield fork(sendSaga, socket);
+    while (true) {
+        const socket: WebSocket | undefined = yield call(connect);
+        if (socket) {
+            const receiveTask = yield fork(receiveSaga, socket);
+            const sendTask = yield fork(sendSaga, socket);
+            yield call(watchDisconnect, socket);
+            yield cancel(receiveTask);
+            yield cancel(sendTask);
+        }
     }
 }
 
-export function* receiveSaga(socket: WebSocket) {
+function* watchDisconnect(socket: WebSocket) {
+    const channel: EventChannel<DisconnectAction> = yield call(subscribeToDisconnectEvent, socket);
+    const action: DisconnectAction = yield take(channel);
+    channel.close();
+    yield put(action);
+}
+
+function subscribeToDisconnectEvent(socket: WebSocket) {
+    return eventChannel((emit) => {
+        // when the connection is closed, this method is called
+        socket.onclose = function () {
+            emit(sessionActionCretors.disconnect());
+            console.log("disconnected");
+        };
+
+        return () => {
+            // cleanup
+        };
+    });
+}
+
+function* connect() {
+    while (true) {
+        // create a new websocket and connect
+        const socket = new WebSocket(`ws://${window.location.hostname}:8181/`);
+        const connectChannel: EventChannel<ConnectAction | DisconnectAction> = yield call(
+            subscribeToConnectEvents,
+            socket
+        );
+        const action: ConnectAction | DisconnectAction = yield take(connectChannel);
+        connectChannel.close();
+        yield put(action);
+        if (action.type === CONNECT) {
+            return socket;
+        }
+    }
+}
+
+function subscribeToConnectEvents(socket: WebSocket) {
+    return eventChannel((emit) => {
+        // when the connection is established, this method is called
+        socket.onopen = function () {
+            emit(sessionActionCretors.connect());
+        };
+
+        // when the connection is closed, this method is called
+        socket.onclose = function () {
+            emit(sessionActionCretors.disconnect());
+            console.log("disconnected");
+        };
+
+        return () => {
+            // cleanup
+        };
+    });
+}
+
+function* receiveSaga(socket: WebSocket) {
     const channel: EventChannel<HudActionTypes> = yield call(HudChannel, socket);
     while (true) {
         const action: HudActionTypes = yield take(channel);

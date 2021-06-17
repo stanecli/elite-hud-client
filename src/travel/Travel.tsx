@@ -13,7 +13,7 @@ const Travel: FC = () => {
     return (
         <div className="travel-controls">
             <div
-                className={`button vertical arrow up ${nextSystemActive ? "active" : ""}`}
+                className={`button vertical arrow top ${nextSystemActive ? "active" : ""}`}
                 onPointerDown={() => {
                     setNextSystemActive(true);
                     targetNextSystemInRoute();

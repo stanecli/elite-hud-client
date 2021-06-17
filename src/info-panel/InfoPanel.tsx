@@ -29,7 +29,7 @@ const InfoPanel: FC<Props> = ({ status, loadout, cargo }) => {
                 <div className="ship-type font-medium">{status?.shipTypeLocalised}</div>
                 <div className="label font-small active-color">ship name</div>
                 <div className="ship-name font-medium">{status?.shipName}</div>
-                <div className="label font-small active-color">insurance</div>
+                <div className="label font-small active-color">rebuy cost</div>
                 <div className="insurance font-medium">{loadout?.rebuy?.toLocaleString("en")} CR</div>
                 <div className="label font-small active-color">fuel</div>
                 <div className="fuel font-medium">

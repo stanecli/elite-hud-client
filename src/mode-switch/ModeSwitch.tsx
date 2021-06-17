@@ -21,7 +21,7 @@ const ModeSwitch: FC<Props> = ({ analysisMode, dispatch }) => {
         });
         dispatch<PressKeysAction>({
             type: ACT_PRESS_KEYS,
-            keys: ["OemQuestion"],
+            keys: ["OemMinus"],
             mode: KeyPressMode.Sequential,
         });
     };

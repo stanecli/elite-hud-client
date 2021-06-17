@@ -59,3 +59,137 @@ svg {
 #root {
     width: 100%;
 }
+
+@keyframes fadeintop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeinleft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeinright {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeinbottom {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeingrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.commander-info,
+.ship-info,
+.cargo {
+    opacity: 0;
+    animation: fadeinleft 1s forwards;
+}
+
+.commander-info {
+    animation-delay: 0s;
+}
+
+.ship-info {
+    animation-delay: 0.2s;
+}
+
+.cargo {
+    animation-delay: 0.4s;
+}
+
+.camera-button {
+    opacity: 0;
+    animation: fadeinleft 1s forwards;
+    animation-delay: 0.6s;
+}
+
+.ship-controls {
+    opacity: 0;
+    animation: fadeingrow 1s forwards;
+    animation-delay: 0s;
+}
+
+.discovery-controls {
+    opacity: 0;
+    animation: fadeinbottom 1s forwards;
+    animation-delay: 0.6s;
+}
+
+.mode-switch {
+    opacity: 0;
+    animation: fadeintop 0.5s forwards;
+    animation-delay: 0s;
+}
+
+.travel-controls > .middle-section {
+    opacity: 0;
+    animation: fadeinright 1s forwards;
+    animation-delay: 0.8s;
+}
+
+.travel-controls .arrow.top {
+    opacity: 0;
+    animation: fadeintop 1s forwards;
+    animation-delay: 0.8s;
+}
+
+.travel-controls .arrow.flip {
+    opacity: 0;
+    animation: fadeinbottom 1s forwards;
+    animation-delay: 0.8s;
+}

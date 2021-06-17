@@ -6,10 +6,7 @@ const initialState: SessionState = {
     connected: false,
 };
 
-export function sessionReducer(
-    state = initialState,
-    action: SessionAcitonTypes
-): SessionState {
+export function sessionReducer(state = initialState, action: SessionAcitonTypes): SessionState {
     switch (action.type) {
         case actions.CONNECT:
             return {
@@ -19,7 +16,7 @@ export function sessionReducer(
         case actions.DISCONNECT:
             return {
                 ...initialState,
-                connected: true,
+                connected: false,
             };
         default:
             return state;

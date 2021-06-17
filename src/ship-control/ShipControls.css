@@ -78,8 +78,9 @@
     padding: 6px 15px;
     position: absolute;
     left: 50%;
-    top: 35px;
+    top: 0;
     transform: translate(-50%, 0);
+    font-size: 20px;
 }
 
 @keyframes alarm-blink {

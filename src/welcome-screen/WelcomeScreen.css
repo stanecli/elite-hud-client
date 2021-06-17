@@ -1,0 +1,87 @@
+.welcome-screen {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #1f1f1f;
+}
+
+.elite-logo {
+    background-image: url("../static/img/elite-logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 466px;
+    height: 407px;
+    animation: fadeingrow 2s forwards;
+}
+
+.logo-and-lines {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-and-lines .line {
+    opacity: 0;
+    width: 0px;
+    height: 2px;
+    background-color: var(--normal);
+    animation: elongate 1s forwards;
+}
+
+@keyframes elongate {
+    0% {
+        opacity: 0;
+        width: 0px;
+    }
+    100% {
+        opacity: 1;
+        width: 600px;
+    }
+}
+
+.welcome-text {
+    font-size: 30px;
+    margin-top: 20px;
+    opacity: 1;
+}
+
+.welcome-screen .commander-name {
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--active);
+    opacity: 0;
+}
+
+@keyframes text-pulsate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        display: none;
+    }
+}
+
+.initializing .welcome-text {
+    animation: text-pulsate infinite alternate 0.5s;
+}
+
+.connected .commander-name {
+    animation: fadeinbottom forwards 0.5s;
+}
+
+.connected .welcome-text {
+    animation: fadein forwards 0.5s;
+}
+
+.welcome-screen.connected {
+    animation: fadeout forwards 1s;
+    animation-delay: 2s;
+}

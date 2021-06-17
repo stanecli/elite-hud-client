@@ -1,3 +1,4 @@
+import produce from "immer";
 import {
     EVT_ANALYSIS_MODE,
     EVT_CARGO,
@@ -25,8 +26,6 @@ import {
 } from "./hudActions";
 import { HudActionTypes } from "./hudActionTypes";
 import { FSDStatus, HudState } from "./hudStateTypes";
-import produce from "immer";
-import { store } from "./store";
 
 const initialState: HudState = {
     cargo: {},
@@ -107,17 +106,18 @@ export const hudReducer = produce((draft: HudState, action: HudActionTypes) => {
             draft.ship.fsdJump = false;
             break;
         case EVT_FSD_CHARGING:
-            const state = store.getState().hud.ship;
+            const isHyperJumpCharging = draft.ship.isHyperJumpCharging;
+            const isSuperCruiseCharging = draft.ship.isSuperCruiseCharging;
             draft.ship.fsdCharging = action.data;
             // guess from button press. if no buttons pressed, try to guess from fsd state
             draft.ship.isHyperJumpCharging =
                 action.data &&
-                !state.isSuperCruiseCharging &&
-                (state.isHyperJumpCharging || draft.ship.fsdStatus === FSDStatus.SuperCruise);
+                !isSuperCruiseCharging &&
+                (isHyperJumpCharging || draft.ship.fsdStatus === FSDStatus.SuperCruise);
             draft.ship.isSuperCruiseCharging =
                 action.data &&
-                !state.isHyperJumpCharging &&
-                (state.isSuperCruiseCharging || draft.ship.fsdStatus === FSDStatus.Thrusters);
+                !isHyperJumpCharging &&
+                (isSuperCruiseCharging || draft.ship.fsdStatus === FSDStatus.Thrusters);
             break;
         case EVT_FSD_COOLDOWN:
             draft.ship.fsdCooldown = action.data;
