@@ -70,10 +70,12 @@
 
 .overheating {
     animation: alarm-blink 1s infinite;
+    animation-delay: 0.25s;
 }
 
 .overheating-label {
     animation: alarm-blink 1s infinite;
+    animation-delay: 0.25s;
     border: 1px solid;
     padding: 6px 15px;
     position: absolute;

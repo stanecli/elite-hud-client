@@ -23,9 +23,6 @@ body {
 }
 
 body {
-    background-image: url("./static/img/nebula_mosaic.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
     font-family: "Quicksand", sans-serif;
     color: var(--normal);
     font-size: 15px;
@@ -47,8 +44,7 @@ svg {
     padding-top: 45px;
     display: flex;
     justify-content: space-around;
-    max-width: 1920px;
-    margin: auto;
+    width: 1920px;
 }
 
 .main > .right-side,
@@ -58,6 +54,70 @@ svg {
 
 #root {
     width: 100%;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.App {
+    height: 100vh;
+}
+
+.app-bg,
+.app-bg .bg-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.bg-inner {
+    background-image: url("./static/img/nebula_mosaic.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.app-bg.alarm-blink {
+    animation: alarm-blink-bg 1s infinite;
+}
+
+.app-bg.alarm-blink .bg-inner {
+    animation: alarm-blink-bg-inner 1s infinite;
+}
+
+@keyframes alarm-blink-bg-inner {
+    0% {
+        filter: none;
+    }
+    49% {
+        filter: none;
+    }
+    50% {
+        filter: sepia(1);
+    }
+    100% {
+        filter: sepia(1);
+    }
+}
+
+@keyframes alarm-blink-bg {
+    0% {
+        filter: none;
+    }
+    49% {
+        filter: none;
+    }
+    50% {
+        filter: hue-rotate(308deg) saturate(5) brightness(0.85);
+    }
+    100% {
+        filter: hue-rotate(308deg) saturate(5) brightness(0.85);
+    }
 }
 
 @keyframes fadeintop {
