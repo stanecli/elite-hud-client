@@ -55,7 +55,7 @@ export const hudReducer = produce((draft: HudState, action: HudActionTypes) => {
             draft.cargo = action.data.cargo;
             draft.loadout = action.data.loadout;
             draft.ship = {
-                ...action.data.ship,
+                ...ship,
                 orbitLines: false,
                 rotationalCorrection: false,
                 hud: false,

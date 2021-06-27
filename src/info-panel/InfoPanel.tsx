@@ -52,7 +52,10 @@ const InfoPanel: FC<Props> = ({ status, loadout, cargo }) => {
                 <div className="title font-big active-color">cargo</div>
                 <div className="capacity font-medium">
                     <div className="bar">
-                        <div className="filled" style={{ width: "50%" }}></div>
+                        <div
+                            className="filled"
+                            style={{ width: ((cargo.count?.value || 0) / (loadout.cargoCapacity || 1)) * 100 + "%" }}
+                        ></div>
                     </div>
                     <div className="value">
                         <span className="current">{cargo?.count?.value}</span>

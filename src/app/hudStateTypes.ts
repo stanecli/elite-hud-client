@@ -52,9 +52,11 @@ export enum FSDStatus {
     HyerpJump,
 }
 
+export type ShipType = "Federation_Corvette" | "Python";
+
 export interface StatusState {
     commander: string;
-    shipType: string;
+    shipType: ShipType;
     shipTypeLocalised: string;
     shipName: string;
     fuelLevel: number;
@@ -100,7 +102,7 @@ export interface LoadGameData {
     commander: string;
     hasHorizons: boolean;
     hasOdyssey: boolean;
-    ship: string;
+    ship: ShipType;
     ship_Localised: string;
     shipId: string;
     shipName: string;

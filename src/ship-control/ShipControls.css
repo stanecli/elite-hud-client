@@ -26,6 +26,13 @@
     background: url("../static/img/federal-corvette.png");
 }
 
+.ship-image.Python {
+    width: 129px;
+    height: 194px;
+    background: url("../static/img/python.png");
+    bottom: 90px;
+}
+
 .ship-image {
     position: absolute;
     bottom: 0;

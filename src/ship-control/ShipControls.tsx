@@ -4,6 +4,7 @@ import "./ShipControls.css";
 
 // icons
 import { ReactComponent as LinesFederalCrovette } from "../static/SVG/lines_federal_corvette.svg";
+import { ReactComponent as LinesPython } from "../static/SVG/lines_python.svg";
 import { ReactComponent as CargoScoop } from "../static/SVG/cargo_scoop.svg";
 import { ReactComponent as HardPoints } from "../static/SVG/hardpoints.svg";
 import { ReactComponent as Headlights } from "../static/SVG/headlights.svg";
@@ -36,6 +37,11 @@ const connector = connect((state: RootState) => ({
     shieldsOn: ((state.hud.ship.flags || 0) & ShipFlags.Shields) > 0,
     overHeating: ((state.hud.ship.flags || 0) & ShipFlags.Overheating) > 0,
 }));
+
+const shipLinesByType = {
+    Federation_Corvette: <LinesFederalCrovette width={294} height={432} className="lines" />,
+    Python: <LinesPython width={294} height={432} className="lines" />,
+};
 
 type Props = ConnectedProps<typeof connector>;
 
@@ -87,7 +93,7 @@ const ShipControls: FC<Props> = ({ ship, shipType, loadout, silentRunning, shiel
                     } ${silentRunning ? "silentrunning-active" : ""}`}
                 >
                     {overHeating && <div className={`overheating-label`}>overheating</div>}
-                    <LinesFederalCrovette width={294} height={432} className="lines" />
+                    {shipType && shipLinesByType[shipType]}
                     <div className={`ship-image ${shipType} ${overHeating ? "overheating" : ""}`}></div>
                 </div>
                 <div className="right-side">
