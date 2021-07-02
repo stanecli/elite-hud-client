@@ -14,10 +14,10 @@ Most phones are NOT eligible, tablets, convertible laptops will be a better expe
 Clone and install on the same host which runs the elite-hud-server.
 After installing the prerequisites, run these commands from the project root:
 
-`
+```sh
 yarn install
 yarn build
 serve -s build
-`
+```
 
 On your touch screen device, navigate to the IP:port of your host PC. The `serve` command will print out the IP:port to the command line.
