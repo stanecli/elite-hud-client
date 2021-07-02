@@ -1,7 +1,7 @@
 A web-based Elite Dangerous external HUD for touch screens.
 
-Will work on any device, but screen resolution must be greater than 1920x1080 and a 10" (miniimum) screen is recommended.
-Most phones are NOT eligible, tablets, convertible laptops will be a better experience. If this stuff get more attention, I will add support for smaller screens.
+Will work on any device, but screen resolution must be greater than 1920x1080 and a 10" (minimum) screen is recommended.
+Most phones are NOT eligible, tablets, convertible laptops will be a better experience. If this stuff gets more attention, I will add support for smaller screens.
 
 ## Requirements
 
